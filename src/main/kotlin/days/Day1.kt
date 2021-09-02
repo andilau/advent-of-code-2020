@@ -1,7 +1,6 @@
 package days
 
 class Day1 : Day(1) {
-
     override fun partOne(): Any {
         return inputList
             .map { it.toInt() }
