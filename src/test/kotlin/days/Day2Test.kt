@@ -5,7 +5,6 @@ import org.hamcrest.core.Is.`is`
 import org.junit.Test
 
 class Day2Test {
-
     private val dayTwo = Day2()
 
     @Test
