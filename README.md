@@ -4,6 +4,21 @@ My attempts at solving the [Advent of Code 2020](https://adventofcode.com/2020) 
 the [Kotlin](https://kotlinlang.org/)
 programming language.
 
+## Solutions
+
+- Day 1: [Report Repair](https://adventofcode.com/2020/day/1)
+- Day 2: [Password Philosophy](https://adventofcode.com/2020/day/2)
+- Day 3: [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
+- Day 4: [Passport Processing](https://adventofcode.com/2020/day/4)
+- Day 5: [Binary Boarding](https://adventofcode.com/2020/day/5)
+- Day 6: [Custom Customs](https://adventofcode.com/2020/day/6)
+- Day 7: [Handy Haversacks](https://adventofcode.com/2020/day/7)
+- Day 8: [Handheld Halting](https://adventofcode.com/2020/day/8)
+- Day 9: [Encoding Error](https://adventofcode.com/2020/day/9)
+- Day 10: [Adapter Array](https://adventofcode.com/2020/day/10)
+- Day 11: [Seating System](https://adventofcode.com/2020/day/11)
+- Day 12: [Rain Risk](https://adventofcode.com/2020/day/12)
+
 ## Template
 
 Starter template for solving [Advent of Code](https://adventofcode.com) in [Kotlin](https://kotlinlang.org/)
