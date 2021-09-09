@@ -1,4 +1,10 @@
-# aoc-kotlin-starter
+# Advent of Code 2020: Solutions in Kotlin
+
+My attempts at solving the [Advent of Code 2020](https://adventofcode.com/2020) with
+the [Kotlin](https://kotlinlang.org/)
+programming language.
+
+## Template
 
 Starter template for solving [Advent of Code](https://adventofcode.com) in [Kotlin](https://kotlinlang.org/)
 
