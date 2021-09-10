@@ -7,6 +7,7 @@ programming language.
 ## Solutions
 
 - Day 1: [Report Repair](https://adventofcode.com/2020/day/1)
+  , [Solution](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day1.kt)
 - Day 2: [Password Philosophy](https://adventofcode.com/2020/day/2)
 - Day 3: [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
 - Day 4: [Passport Processing](https://adventofcode.com/2020/day/4)
