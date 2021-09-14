@@ -6,23 +6,38 @@ programming language.
 
 ## Solutions
 
-- Day 1: [Report Repair](https://adventofcode.com/2020/day/1)
-  , [Solution](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day1.kt)
-- Day 2: [Password Philosophy](https://adventofcode.com/2020/day/2)
-- Day 3: [Toboggan Trajectory](https://adventofcode.com/2020/day/3)
-- Day 4: [Passport Processing](https://adventofcode.com/2020/day/4)
-- Day 5: [Binary Boarding](https://adventofcode.com/2020/day/5)
-- Day 6: [Custom Customs](https://adventofcode.com/2020/day/6)
-- Day 7: [Handy Haversacks](https://adventofcode.com/2020/day/7)
-- Day 8: [Handheld Halting](https://adventofcode.com/2020/day/8)
-- Day 9: [Encoding Error](https://adventofcode.com/2020/day/9)
-- Day 10: [Adapter Array](https://adventofcode.com/2020/day/10)
-- Day 11: [Seating System](https://adventofcode.com/2020/day/11)
-- Day 12: [Rain Risk](https://adventofcode.com/2020/day/12)
-- Day 13: [Shuttle Search](https://adventofcode.com/2020/day/13)
-- Day 14: [Docking Data](https://adventofcode.com/2020/day/14)
-- Day 15: [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
-- Day 16: [Ticket Translation](https://adventofcode.com/2020/day/16)
+- Day
+  1: [Report Repair](https://adventofcode.com/2020/day/1) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day1.kt)
+- Day
+  2: [Password Philosophy](https://adventofcode.com/2020/day/2) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day2.kt)
+- Day
+  3: [Toboggan Trajectory](https://adventofcode.com/2020/day/3) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day3.kt)
+- Day
+  4: [Passport Processing](https://adventofcode.com/2020/day/4) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day4.kt)
+- Day
+  5: [Binary Boarding](https://adventofcode.com/2020/day/5) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day5.kt)
+- Day
+  6: [Custom Customs](https://adventofcode.com/2020/day/6) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day6.kt)
+- Day
+  7: [Handy Haversacks](https://adventofcode.com/2020/day/7) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day7.kt)
+- Day
+  8: [Handheld Halting](https://adventofcode.com/2020/day/8)  [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day8.kt)
+- Day
+  9: [Encoding Error](https://adventofcode.com/2020/day/9) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day9.kt)
+- Day
+  10: [Adapter Array](https://adventofcode.com/2020/day/10) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day10.kt)
+- Day
+  11: [Seating System](https://adventofcode.com/2020/day/11) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day11.kt)
+- Day
+  12: [Rain Risk](https://adventofcode.com/2020/day/12) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day12.kt)
+- Day
+  13: [Shuttle Search](https://adventofcode.com/2020/day/13) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day13.kt)
+- Day
+  14: [Docking Data](https://adventofcode.com/2020/day/14) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day14.kt)
+- Day
+  15: [Rambunctious Recitation](https://adventofcode.com/2020/day/15) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day15.kt)
+- Day
+  16: [Ticket Translation](https://adventofcode.com/2020/day/16) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day16.kt)
 
 ## Template
 
