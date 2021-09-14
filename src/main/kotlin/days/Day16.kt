@@ -1,7 +1,6 @@
 package days
 
 class Day16 : Day(16) {
-
     private val rules = inputList.takeWhile(String::isNotEmpty).map(TicketRule.Companion::parse)
     private val ownTicket = inputList.dropWhile { it != "your ticket:" }.drop(1).first().split(",").map { it.toInt() }
     private val allTickets = inputList.dropWhile { it != "nearby tickets:" }.drop(1).map { row ->
