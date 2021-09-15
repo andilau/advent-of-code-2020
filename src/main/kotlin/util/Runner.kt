@@ -9,7 +9,7 @@ import kotlin.time.measureTimedValue
 
 @ExperimentalTime
 object Runner {
-
+    private val regex = "\\D".toRegex()
     private val reflections = Reflections("days")
 
     @JvmStatic
@@ -17,37 +17,28 @@ object Runner {
         if (args.isNotEmpty()) {
             val day = try {
                 args[0].toInt()
-            }
-            catch (e: NumberFormatException) {
+            } catch (e: NumberFormatException) {
                 printError("Day argument must be an integer")
                 return
             }
 
-            val dayClass = getAllDayClasses()?.find { dayNumber(it.simpleName) == day }
-            if (dayClass != null) {
-                printDay(dayClass)
-            }
-            else {
-                printError("Day $day not found")
-            }
+            getAllDayClasses()
+                .filter { dayNumber(it.simpleName) == day }
+                .takeIf { it.isNotEmpty() }
+                ?.forEach { printDay(it) } ?: printError("Day $day not found")
         }
         else {
-            val allDayClasses = getAllDayClasses()
-            if (allDayClasses != null) {
-                allDayClasses.sortedBy { dayNumber(it.simpleName) }.forEach { printDay(it) }
-            }
-            else {
-                printError("Couldn't find day classes - make sure you're in the right directory and try building again")
-            }
+            getAllDayClasses()
+                .sortedBy { dayNumber(it.simpleName) }
+                .forEach { printDay(it) }
         }
     }
 
-    private fun getAllDayClasses(): MutableSet<Class<out Day>>? {
-        return reflections.getSubTypesOf(Day::class.java)
-    }
+    private fun getAllDayClasses(): MutableSet<Class<out Day>> =
+        reflections.getSubTypesOf(Day::class.java)
 
     private fun printDay(dayClass: Class<out Day>) {
-        println("\n=== DAY ${dayNumber(dayClass.simpleName)} ===")
+        println("\n=== DAY ${dayNumber(dayClass.simpleName)} (${dayClass.simpleName}) ===")
         val day = dayClass.constructors[0].newInstance() as Day
 
         val partOne = measureTimedValue { day.partOne() }
@@ -56,14 +47,17 @@ object Runner {
     }
 
     private fun printParts(partOne: TimedValue<Any>, partTwo: TimedValue<Any>) {
-        val padding = max(partOne.value.toString().length, partTwo.value.toString().length) + 14        // 14 is 8 (length of 'Part 1: ') + 6 more
+        val padding = max(
+            partOne.value.toString().length,
+            partTwo.value.toString().length
+        ) + 14        // 14 is 8 (length of 'Part 1: ') + 6 more
         println("Part 1: ${partOne.value}".padEnd(padding, ' ') + "(${partOne.duration})")
         println("Part 2: ${partTwo.value}".padEnd(padding, ' ') + "(${partTwo.duration})")
     }
 
-    private fun printError(message: String) {
+    private fun printError(message: String) =
         System.err.println("\n=== ERROR ===\n$message")
-    }
 
-    private fun dayNumber(dayClassName: String) = dayClassName.replace("Day", "").toInt()
+    private fun dayNumber(dayClassName: String) =
+        dayClassName.replace(regex, "").toIntOrNull() ?: 0
 }
