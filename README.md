@@ -23,6 +23,7 @@ programming language.
 - Day 15: [Rambunctious Recitation](https://adventofcode.com/2020/day/15) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day15.kt)
 - Day 16: [Ticket Translation](https://adventofcode.com/2020/day/16) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day16.kt)
 - Day 17: [Conway Cubes](https://adventofcode.com/2020/day/17) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day17.kt)
+- Day 18: [Operation Order](https://adventofcode.com/2020/day/18) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day18.kt)
 
 ## Template
 
