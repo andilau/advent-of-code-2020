@@ -2,54 +2,58 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.api.*
 
+@DisplayName("Day 18")
 class Day18Test {
     private val day = Day18()
 
-    @Test
-    fun testPartOne() = assertThat(day.partOne(), `is`(202553439706L))
+    @DisplayName("Part 1")
+    @Nested
+    inner class Part1 {
+        @Test
+        fun testPartOne() = assertThat(day.partOne(), `is`(202553439706L))
 
-    @Test
-    fun testPartTwo() = assertThat(day.partTwo(), `is`(88534268715686L))
-}
+        @TestFactory
+        fun testPartOneData() = testData
+            .map { (input, expected) ->
+                DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                    Assertions.assertEquals(expected, day.testPartOne(input))
+                }
+            }
 
-class Day18PartOneTest {
-    companion object {
-        @JvmStatic
-        fun data() = listOf(
-            Arguments.of("1 + 2 * 3 + 4 * 5 + 6", 71L),
-            Arguments.of("1 + (2 * 3) + (4 * (5 + 6))", 51L),
-            Arguments.of("2 * 3 + (4 * 5)", 26L),
-            Arguments.of("5 + (8 * 3 + 9 + 3 * 4 * 3)", 437L),
-            Arguments.of("5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))", 12240L),
-            Arguments.of("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2", 13632L)
+        val testData = listOf(
+            "1 + 2 * 3 + 4 * 5 + 6" to 71L,
+            "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
+            "2 * 3 + (4 * 5)" to 26L,
+            "5 + (8 * 3 + 9 + 3 * 4 * 3)" to 437L,
+            "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" to 12240L,
+            "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" to 13632L
         )
     }
 
-    @ParameterizedTest
-    @MethodSource("data")
-    fun testPartOne(numbers: String, number: Long) =
-        assertThat(Day18().testPartOne(numbers), `is`(number))
-}
+    @DisplayName("Part 2")
+    @Nested
+    inner class Part2 {
 
-class Day18PartTwoTest {
-    companion object {
-        @JvmStatic
-        fun data(): List<Arguments> = listOf(
-            Arguments.of("1 + 2 * 3 + 4 * 5 + 6", 231L),
-            Arguments.of("1 + (2 * 3) + (4 * (5 + 6))", 51L),
-            Arguments.of("2 * 3 + (4 * 5)", 46L),
-            Arguments.of("5 + (8 * 3 + 9 + 3 * 4 * 3)", 1445L),
-            Arguments.of("5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))", 669060L),
-            Arguments.of("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2", 23340L)
+        @Test
+        fun testPartTwo() = assertThat(day.partTwo(), `is`(88534268715686L))
+
+        @TestFactory
+        fun testPartOneData() = testData2
+            .map { (input, expected) ->
+                DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                    Assertions.assertEquals(expected, day.testPartTwo(input))
+                }
+            }
+
+        var testData2 = listOf(
+            "1 + 2 * 3 + 4 * 5 + 6" to 231L,
+            "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
+            "2 * 3 + (4 * 5)" to 46L,
+            "5 + (8 * 3 + 9 + 3 * 4 * 3)" to 1445L,
+            "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" to 669060L,
+            "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" to 23340L
         )
     }
-
-    @ParameterizedTest
-    @MethodSource("data")
-    fun testPartTwo(numbers: String, number: Long) = assertThat(Day18().testPartTwo(numbers), `is`(number))
 }

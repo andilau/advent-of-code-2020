@@ -2,42 +2,35 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.api.*
 
+@DisplayName("Day 13")
 class Day13Test {
     private val day = Day13()
 
+    @DisplayName("Part 1")
     @Test
     fun testPartOne() {
         assertThat(day.partOne(), `is`(5 * 59))
     }
 
+    @DisplayName("Part 2")
     @Test
     fun testPartTwo() {
         assertThat(day.partTwo(), `is`(1068781L))
     }
-}
 
-class Day13ParameterizedTest {
-    private val day = Day13()
-
-    companion object {
-        @JvmStatic
-        fun data(): List<Arguments> = listOf(
-            Arguments.of("3,5,13", 24L),
-            Arguments.of("17,x,13,19", 3417L),
-            Arguments.of("67,x,7,59,61", 779210L),
-            Arguments.of("67,7,x,59,61", 1261476L),
-            Arguments.of("1789,37,47,1889", 1202161486L)
-        )
+    @TestFactory
+    fun testPartTwoSimple() = listOf(
+        "3,5,13" to 24L,
+        "17,x,13,19" to 3417L,
+        "67,x,7,59,61" to 779210L,
+        "67,7,x,59,61" to 1261476L,
+        "1789,37,47,1889" to 1202161486L
+    ).map { (input, expected) ->
+        DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+            Assertions.assertEquals(expected, day.test(input))
+        }
     }
 
-    @ParameterizedTest
-    @MethodSource("data")
-    fun testPartTwoSimple(line: String, time: Long) {
-        assertThat(day.test(line), `is`(time))
-    }
 }

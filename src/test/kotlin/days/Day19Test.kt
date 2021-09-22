@@ -2,38 +2,31 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.*
+
+@DisplayName("Day 19")
 class Day19Test {
     private val day = Day19()
 
+    @DisplayName("Part 1")
     @Test
     fun testPartOne() = assertThat(day.partOne(), `is`(2))
 
+    @DisplayName("Part 2")
     @Test
     fun testPartTwo() = assertThat(day.partOne(), `is`(2))
 
-    @Test
-    fun testOkayMessages1() {
-        assertThat(day.match("ababbb"), `is`(true))
-    }
-
-    @Test
-    fun testOkayMessages2() {
-        assertThat(day.match("abbbab"), `is`(true))
-    }
-
-    @Test
-    fun testNotOkayMessages1() {
-        assertThat(day.match("bababa"), `is`(false))
-    }
-
-    @Test
-    fun testNotOkayMessages2() {
-        assertThat(day.match("aaabbb"), `is`(false))
-    }
-
-    @Test
-    fun testNotOkayMessages3() {
-        assertThat(day.match("aaaabbb"), `is`(false))
+    @TestFactory
+    fun testFactory() = listOf(
+        "" to false,
+        "ababbb" to true,
+        "abbbab" to true,
+        "bababa" to false,
+        "aaabbb" to false,
+        "aaaabbb" to false
+    ).map { (input, expected) ->
+        DynamicTest.dynamicTest("""when I start with message "$input" then I get $expected""") {
+            Assertions.assertEquals(expected, day.match(input))
+        }
     }
 }

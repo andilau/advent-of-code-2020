@@ -2,69 +2,59 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.junit.jupiter.api.Disabled
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.api.*
 
+@DisplayName("Day 15")
 class Day15Test {
     private val day = Day15()
 
-    @Test
-    fun testPartOne() {
-        assertThat(day.partOne(), `is`(436))
+    @DisplayName("Part 1")
+    @Nested
+    inner class Part1 {
+        @Test
+        fun testPartOne() {
+            assertThat(day.partOne(), `is`(436))
+        }
+
+        @TestFactory
+        fun testPartOneFactory() = listOf(
+            "0,3,6" to 436,
+            "1,3,2" to 1,
+            "2,1,3" to 10,
+            "1,2,3" to 27,
+            "2,3,1" to 78,
+            "3,2,1" to 438,
+            "3,1,2" to 1836
+        ).map { (input, expected) ->
+                DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                    Assertions.assertEquals(expected, day.solveFor2020(input))
+                }
+            }
     }
 
-    @Test
-    @Disabled
-    fun testPartTwo() {
-        assertThat(day.partTwo(), `is`(175594))
-    }
-}
+    @DisplayName("Part 2")
+    @Nested
+    inner class Part2 {
+        @Test
+        @Disabled
+        fun testPartTwo() {
+            assertThat(day.partTwo(), `is`(175594))
+        }
 
-class Day15ParameterizedPartOne {
-    private val day = Day15()
-
-    companion object {
-        @JvmStatic
-        fun data() = listOf(
-            arrayOf("0,3,6", 436),
-            arrayOf("1,3,2", 1),
-            arrayOf("2,1,3", 10),
-            arrayOf("1,2,3", 27),
-            arrayOf("2,3,1", 78),
-            arrayOf("3,2,1", 438),
-            arrayOf("3,1,2", 1836)
-        )
-    }
-
-    @ParameterizedTest
-    @MethodSource("data")
-    fun testPartOne(numbers: String, number: Int) {
-        assertThat(day.solveFor2020(numbers), `is`(number))
-    }
-}
-
-class Day15ParameterizedPartTwo {
-    private val day = Day15()
-
-    companion object {
-        @JvmStatic
-        fun data() = listOf(
-            arrayOf("0,3,6", 175594),
-            arrayOf("1,3,2", 2578),
-            arrayOf("2,1,3", 3544142),
-            arrayOf("1,2,3", 261214),
-            arrayOf("2,3,1", 6895259),
-            arrayOf("3,2,1", 18),
-            arrayOf("3,1,2", 362)
-        )
-    }
-
-    @ParameterizedTest
-    @MethodSource("data")
-    @Disabled
-    fun testPartTwo(numbers: String, number: Int) {
-        assertThat(day.solveFor30000000(numbers), `is`(number))
+        @TestFactory
+        @Disabled
+        fun testPartTwoFacrory() = listOf(
+            "0,3,6" to 175594,
+            "1,3,2" to 2578,
+            "2,1,3" to 3544142,
+            "1,2,3" to 261214,
+            "2,3,1" to 6895259,
+            "3,2,1" to 18,
+            "3,1,2" to 36
+        ).map { (input, expected) ->
+            DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                Assertions.assertEquals(expected, day.solveFor30000000(input))
+            }
+        }
     }
 }
