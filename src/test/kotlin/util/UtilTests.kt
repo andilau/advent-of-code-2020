@@ -3,8 +3,7 @@ package util
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.collection.IsIterableContainingInOrder.contains
 import org.hamcrest.core.Is.`is`
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class UtilTests {
 
@@ -12,7 +11,7 @@ class UtilTests {
     fun testReadInputAsString() {
         val testInputAsString = InputReader.getInputAsString(1)
         assertThat(testInputAsString, `is`("1721\n979\n366\n299\n675\n1456"))
-         }
+    }
 
     @Test
     fun testReadInputAsList() {

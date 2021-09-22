@@ -2,11 +2,10 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.junit.Ignore
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
-import org.junit.runners.Parameterized.Parameters
+import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class Day15Test {
     private val day = Day15()
@@ -17,19 +16,17 @@ class Day15Test {
     }
 
     @Test
-    @Ignore
+    @Disabled
     fun testPartTwo() {
         assertThat(day.partTwo(), `is`(175594))
     }
 }
 
-@RunWith(Parameterized::class)
-class Day15ParameterizedPartOne(private val numbers: String, private val number: Int) {
+class Day15ParameterizedPartOne {
     private val day = Day15()
 
     companion object {
         @JvmStatic
-        @Parameters
         fun data() = listOf(
             arrayOf("0,3,6", 436),
             arrayOf("1,3,2", 1),
@@ -41,19 +38,18 @@ class Day15ParameterizedPartOne(private val numbers: String, private val number:
         )
     }
 
-    @Test
-    fun testPartOne() {
+    @ParameterizedTest
+    @MethodSource("data")
+    fun testPartOne(numbers: String, number: Int) {
         assertThat(day.solveFor2020(numbers), `is`(number))
     }
 }
 
-@RunWith(Parameterized::class)
-class Day15ParameterizedPartTwo(private val numbers: String, private val number: Int) {
+class Day15ParameterizedPartTwo {
     private val day = Day15()
 
     companion object {
         @JvmStatic
-        @Parameters
         fun data() = listOf(
             arrayOf("0,3,6", 175594),
             arrayOf("1,3,2", 2578),
@@ -65,9 +61,10 @@ class Day15ParameterizedPartTwo(private val numbers: String, private val number:
         )
     }
 
-    @Test
-    @Ignore
-    fun testPartTwo() {
+    @ParameterizedTest
+    @MethodSource("data")
+    @Disabled
+    fun testPartTwo(numbers: String, number: Int) {
         assertThat(day.solveFor30000000(numbers), `is`(number))
     }
 }

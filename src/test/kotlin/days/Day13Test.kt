@@ -2,9 +2,10 @@ package days
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 class Day13Test {
     private val day = Day13()
@@ -20,24 +21,23 @@ class Day13Test {
     }
 }
 
-@RunWith(Parameterized::class)
-class Day13ParameterizedTest(private val line: String, private val time: Long) {
+class Day13ParameterizedTest {
     private val day = Day13()
 
     companion object {
         @JvmStatic
-        @Parameterized.Parameters
-        fun data() = listOf(
-            arrayOf("3,5,13", 24L),
-            arrayOf("17,x,13,19", 3417L),
-            arrayOf("67,x,7,59,61", 779210L),
-            arrayOf("67,7,x,59,61", 1261476L),
-            arrayOf("1789,37,47,1889", 1202161486L)
+        fun data(): List<Arguments> = listOf(
+            Arguments.of("3,5,13", 24L),
+            Arguments.of("17,x,13,19", 3417L),
+            Arguments.of("67,x,7,59,61", 779210L),
+            Arguments.of("67,7,x,59,61", 1261476L),
+            Arguments.of("1789,37,47,1889", 1202161486L)
         )
     }
 
-    @Test
-    fun testPartTwoSimple() {
+    @ParameterizedTest
+    @MethodSource("data")
+    fun testPartTwoSimple(line: String, time: Long) {
         assertThat(day.test(line), `is`(time))
     }
 }

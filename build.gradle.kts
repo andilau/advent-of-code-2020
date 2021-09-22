@@ -17,11 +17,18 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.reflections", "reflections", "0.9.12")
-    testImplementation("junit", "junit", "4.13.1")
-    testImplementation("org.hamcrest", "hamcrest", "2.2")
+    implementation("org.reflections:reflections:0.9.12")
+
+    testApi("org.junit.jupiter:junit-jupiter-engine:5.8.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.1.0")
+    testImplementation("org.hamcrest:hamcrest:2.2")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+tasks {
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    test {
+        useJUnitPlatform()
+    }
 }
