@@ -24,6 +24,7 @@ programming language.
 - Day 16: [Ticket Translation](https://adventofcode.com/2020/day/16) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day16.kt)
 - Day 17: [Conway Cubes](https://adventofcode.com/2020/day/17) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day17.kt)
 - Day 18: [Operation Order](https://adventofcode.com/2020/day/18) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day18.kt)
+- Day 19: [Monster Messages](https://adventofcode.com/2020/day/19) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day19.kt)
 
 ### Template
 
