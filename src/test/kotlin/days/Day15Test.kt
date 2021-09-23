@@ -1,7 +1,6 @@
 package days
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 
 @DisplayName("Day 15")
@@ -13,7 +12,7 @@ class Day15Test {
     inner class Part1 {
         @Test
         fun testPartOne() {
-            assertThat(day.partOne(), `is`(436))
+            assertThat(day.partOne()).isEqualTo(436)
         }
 
         @TestFactory
@@ -26,10 +25,10 @@ class Day15Test {
             "3,2,1" to 438,
             "3,1,2" to 1836
         ).map { (input, expected) ->
-                DynamicTest.dynamicTest("when I start with $input then I get $expected") {
-                    Assertions.assertEquals(expected, day.solveFor2020(input))
-                }
+            DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                Assertions.assertEquals(expected, day.solveFor2020(input))
             }
+        }
     }
 
     @DisplayName("Part 2")
@@ -38,7 +37,7 @@ class Day15Test {
         @Test
         @Disabled
         fun testPartTwo() {
-            assertThat(day.partTwo(), `is`(175594))
+            assertThat(day.partTwo()).isEqualTo(175_594)
         }
 
         @TestFactory

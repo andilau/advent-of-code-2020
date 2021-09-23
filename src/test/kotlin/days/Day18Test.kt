@@ -1,7 +1,6 @@
 package days
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 
 @DisplayName("Day 18")
@@ -12,7 +11,9 @@ class Day18Test {
     @Nested
     inner class Part1 {
         @Test
-        fun testPartOne() = assertThat(day.partOne(), `is`(202553439706L))
+        fun testPartOne() {
+            assertThat(day.partOne()).isEqualTo(202_553_439_706L)
+        }
 
         @TestFactory
         fun testPartOneData() = testData
@@ -22,7 +23,7 @@ class Day18Test {
                 }
             }
 
-        val testData = listOf(
+        private val testData = listOf(
             "1 + 2 * 3 + 4 * 5 + 6" to 71L,
             "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
             "2 * 3 + (4 * 5)" to 26L,
@@ -37,7 +38,9 @@ class Day18Test {
     inner class Part2 {
 
         @Test
-        fun testPartTwo() = assertThat(day.partTwo(), `is`(88534268715686L))
+        fun testPartTwo() {
+            assertThat(day.partTwo()).isEqualTo(88_534_268_715_686L)
+        }
 
         @TestFactory
         fun testPartOneData() = testData2
@@ -47,7 +50,7 @@ class Day18Test {
                 }
             }
 
-        var testData2 = listOf(
+        private val testData2 = listOf(
             "1 + 2 * 3 + 4 * 5 + 6" to 231L,
             "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
             "2 * 3 + (4 * 5)" to 46L,

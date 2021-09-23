@@ -1,7 +1,6 @@
 package days
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -12,12 +11,12 @@ class Day3Test {
     @DisplayName("Part 1")
     @Test
     fun testPartOne() {
-        assertThat(daythree.partOne(), `is`(7))
+        assertThat(daythree.partOne()).isEqualTo(7)
     }
 
     @DisplayName("Part 2")
     @Test
     fun testPartTwo() {
-        assertThat(daythree.partTwo(), `is`(336L))
+        assertThat(daythree.partTwo()).isEqualTo(336L)
     }
 }
