@@ -19,23 +19,23 @@ class Day5 : Day(5) {
         .map { BoardingPass.parse(it) }
         .map { p -> p.getSeatId() }
         .toSet()
-}
 
-data class BoardingPass(val row: Int, val col: Int) {
-    companion object {
-        fun parse(text: String): BoardingPass {
-            val binayRaw = text
-                .replace('B', '1')
-                .replace('F', '0')
-                .replace('L', '0')
-                .replace('R', '1')
+    data class BoardingPass(val row: Int, val col: Int) {
+        companion object {
+            fun parse(text: String): BoardingPass {
+                val binaryRaw = text
+                    .replace('B', '1')
+                    .replace('F', '0')
+                    .replace('L', '0')
+                    .replace('R', '1')
 
-            return BoardingPass(
-                binayRaw.take(7).toInt(2),
-                binayRaw.takeLast(3).toInt(2)
-            )
+                return BoardingPass(
+                    binaryRaw.take(7).toInt(2),
+                    binaryRaw.takeLast(3).toInt(2)
+                )
+            }
         }
-    }
 
-    fun getSeatId(): Int = row * 8 + col
+        fun getSeatId(): Int = row * 8 + col
+    }
 }
