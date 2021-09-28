@@ -2,10 +2,7 @@ package days
 
 import kotlin.math.absoluteValue
 
-typealias Point = Pair<Int, Int>
-
 class Day12 : Day(12) {
-
     override fun partOne(): Any {
         val ship = Ship(Point(0, 0), Heading.EAST)
 
@@ -99,12 +96,3 @@ class Day12 : Day(12) {
         fun turnLeft(times: Int) = turnRight(values().size - times)
     }
 }
-
-private operator fun Point.plus(other: Point) =
-    Point(first + other.first, second + other.second)
-
-private fun Point.rotateLeft() = Point(-second, first)
-private fun Point.rotateRight() = Point(second, -first)
-
-private operator fun Int.times(offset: Point) =
-    Point(this * offset.first, this * offset.second)
