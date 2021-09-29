@@ -4,7 +4,7 @@ import days.Day20.Orientation.*
 
 class Day20 : Day(20) {
     private val tiles: List<Tile> = readTiles(inputString)
-    private val seaMonsterPoints: Set<Point> = getMonsterAsPoints()
+    private val seaMonster: Set<Point> = getMonsterAsPoints()
 
     override fun partOne(): Long = tiles
         .filter { tile -> tile.sharedSideCount(tiles) == 2 }
@@ -19,14 +19,12 @@ class Day20 : Day(20) {
             .windowed(width, width)
             .flatMap { it.asString(withHeader = false, trimmed = true).lines().dropLast(1) }
 
-        val imageTile = Tile(0, image)
-        val tile = imageTile
+        val tile = Tile(0, image)
             .allVariations()
-            .dropWhile { tile -> tile.countMonsters(seaMonsterPoints) == 0 }
+            .dropWhile { tile -> tile.countMonsters(seaMonster).isEmpty() }
             .first()
-        println(tile.asString)
-        return image
-            .sumOf { line -> line.count { it == '#' } } - tile.countMonsters(seaMonsterPoints) * seaMonsterPoints.count()
+
+        return tile.countHashes() - tile.countMonsters(seaMonster).size
     }
 
     private fun List<Tile>.solvePuzzle(): List<Tile> {
@@ -76,33 +74,24 @@ class Day20 : Day(20) {
             }.flatten().toSet()
     }
 
-    private fun Tile.countMonsters(points: Set<Point>): Int {
-        var found = 0
+    private fun Tile.countHashes(): Int = content.sumOf { line -> line.count { it == '#' } }
+
+    private fun Tile.countMonsters(points: Set<Point>): Set<Point> {
+        val seaMonsterPoints = mutableSetOf<Point>()
         val maxX = points.maxByOrNull { point -> point.first }?.first ?: 0
         val maxY = points.maxByOrNull { point -> point.second }?.second ?: 0
 
         (0..(content.indices.last - maxY)).forEach { y ->
             (0..(content.first().indices.last - maxX)).forEach { x ->
-                val imagePoint = Point(x, y)
-                if (points
-                        .asSequence()
-                        .map { it + imagePoint }
-                        .all { content[it.second][it.first] == '#' }
-                ) {
-                    /* points.map { it+imagePoint }
-                        .forEach { val line = content[it.first]
-                            val toByteArray = line.toCharArray()
-                            toByteArray[it.second] = 'O'
-                            content[it.first] = toByteArray.toString()
-                        }
-                     */
-
-                    found++
+                val checkPoints = points
+                    .map { it + Point(x, y) }
+                //
+                if (checkPoints.all { content[it.second][it.first] == '#' }) {
+                    seaMonsterPoints.addAll(checkPoints)
                 }
-
             }
         }
-        return found
+        return seaMonsterPoints
     }
 
     private fun Iterable<Tile>.asString(
@@ -193,17 +182,16 @@ class Day20 : Day(20) {
 
         val inset: List<String>
             get() {
-                val intRange = (content.indices.first + 1) until content.indices.last
-                return intRange.map { y ->
-                    content[y].slice(intRange)
+                val insetRange = (content.indices.first + 1) until content.indices.last
+                return insetRange.map { y ->
+                    content[y].slice(insetRange)
                 }.toList()
             }
 
-        val asString: String
-            get() = buildString {
-                appendLine("Tile $id:")
-                content.forEach { appendLine(it) }
-            }
+        fun getAsString(): String = buildString {
+            appendLine("Tile $id:")
+            content.forEach { appendLine(it) }
+        }
 
         fun hasSide(side: String): Boolean = side in sides || side in reversedSides
 
@@ -218,7 +206,6 @@ class Day20 : Day(20) {
                 return Tile(id, content)
             }
         }
-
     }
 
     enum class Orientation {
