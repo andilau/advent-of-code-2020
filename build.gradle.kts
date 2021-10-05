@@ -16,10 +16,11 @@ repositories {
 }
 
 dependencies {
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.reflections:reflections:0.9.12")
 
-    testApi("org.junit.jupiter:junit-jupiter-engine:5.8.0")
+    testApi("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     testImplementation("org.assertj:assertj-core:3.21.0")
 }
 
