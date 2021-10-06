@@ -27,6 +27,7 @@ programming language.
 - Day 19: [Monster Messages](https://adventofcode.com/2020/day/19) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day19.kt)
 - Day 20: [Jurassic Jigsaw](https://adventofcode.com/2020/day/20) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day20.kt)
 - Day 21: [Allergen Assessment](https://adventofcode.com/2020/day/21) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day21.kt)
+- Day 22: [Crab Combat](https://adventofcode.com/2020/day/22) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day22.kt)
 
 ### Template
 
