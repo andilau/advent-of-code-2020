@@ -1,8 +1,8 @@
 package days
 
 class Day13 : Day(13) {
-    val target = inputList[0].toInt()
-    val busses = inputList[1]
+    private val target = inputList[0].toInt()
+    private val busses = inputList[1]
         .split(",")
         .mapNotNull { it.toIntOrNull() }
 
@@ -23,7 +23,7 @@ class Day13 : Day(13) {
     fun test(input: String): Long {
         val busToOffset = input
             .split(",")
-            .mapIndexedNotNull { i, s -> if (!"x".equals(s)) s.toLong() to i else null }
+            .mapIndexedNotNull { i, s -> if ("x" != s) s.toLong() to i else null }
         var step = busToOffset.first().first
         var time = 0L
         busToOffset.drop(1).forEach { (bus, offset) ->

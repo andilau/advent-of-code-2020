@@ -3,8 +3,6 @@ package days
 class Day7 : Day(7) {
     private val bagRules: Set<BagRule> = parseLines(inputList)
 
-    private val SHINY_GOLD = "shiny gold"
-
     override fun partOne(): Int =
         findParents(SHINY_GOLD).size - 1
 
@@ -25,7 +23,7 @@ class Day7 : Day(7) {
 
     data class BagRule(val parent: String, val amount: Int, val child: String)
 
-    fun parseLines(lines: List<String>): Set<BagRule> {
+    private fun parseLines(lines: List<String>): Set<BagRule> {
         return lines.flatMap { line ->
             val parts = line.split(" ")
             val parent = parts.take(2).joinToString(" ")
@@ -37,6 +35,9 @@ class Day7 : Day(7) {
                 )
             }
         }.toSet()
+    }
 
+    companion object {
+        private const val SHINY_GOLD = "shiny gold"
     }
 }

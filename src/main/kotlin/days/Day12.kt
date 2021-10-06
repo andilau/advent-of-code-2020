@@ -46,7 +46,7 @@ class Day12 : Day(12) {
 
     data class Waypoint(var at: Point) {
         fun move(heading: Heading, value: Int) {
-            at = at + (value * heading.offset)
+            at += value * heading.offset
         }
 
         fun turnLeft(times: Int) {
@@ -60,15 +60,15 @@ class Day12 : Day(12) {
 
     data class Ship(var at: Point = Point(0, 0), var direction: Heading = Heading.EAST) {
         fun move(heading: Heading, value: Int) {
-            at = at + (value * heading.offset)
+            at += value * heading.offset
         }
 
         fun moveWith(point: Point) {
-            at = at + point
+            at += point
         }
 
         fun forward(value: Int) {
-            at = at + (value * direction.offset)
+            at += value * direction.offset
         }
 
         fun turnRight(times: Int) {

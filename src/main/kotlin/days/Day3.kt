@@ -9,7 +9,7 @@ class Day3 : Day(3) {
         .map { countTrees(it).toLong() }
         .reduce { a, b -> a * b }
 
-    fun countTrees(vector: Pair<Int, Int>): Int {
+    private fun countTrees(vector: Pair<Int, Int>): Int {
         val dx = vector.first
         val dy = vector.second
         val width = inputList[0].length

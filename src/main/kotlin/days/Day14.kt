@@ -2,6 +2,7 @@ package days
 
 class Day14 : Day(14) {
     private val maskPattern = """mask = ([01X]{36})""".toRegex()
+    @Suppress("RegExpRedundantEscape")
     private val memPattern = """mem\[(\d+)\] = (\d+)""".toRegex()
 
     override fun partOne(): Any {

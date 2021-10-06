@@ -17,7 +17,7 @@ class Day1 : Day(1) {
             ?: 0
     }
 
-    fun List<Int>.findPairOfSum(sum: Int): Pair<Int, Int>? {
+    private fun List<Int>.findPairOfSum(sum: Int): Pair<Int, Int>? {
         for (first in this)
             for (second in this)
                 if (first + second == sum)
@@ -25,7 +25,7 @@ class Day1 : Day(1) {
         return null
     }
 
-    fun List<Int>.findTripleOfSum(sum: Int): Triple<Int, Int, Int>? {
+    private fun List<Int>.findTripleOfSum(sum: Int): Triple<Int, Int, Int>? {
         forEach { first ->
             forEach { second ->
                 forEach { third ->

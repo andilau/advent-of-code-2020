@@ -3,7 +3,7 @@ package days
 typealias Seat = Pair<Int, Int>
 
 class Day11 : Day(11) {
-    val initialSeats: Map<Seat, Char> = getSeatPlan()
+    private val initialSeats: Map<Seat, Char> = getSeatPlan()
 
     private val neighbors = listOf(
         -1 to -1, -1 to 0, -1 to 1,
