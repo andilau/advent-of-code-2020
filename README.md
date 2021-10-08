@@ -30,6 +30,7 @@ programming language.
 - Day 22: [Crab Combat](https://adventofcode.com/2020/day/22) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day22.kt)
 - Day 23: [Crab Cups](https://adventofcode.com/2020/day/23) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day23.kt)
 - Day 24: [Lobby Layout](https://adventofcode.com/2020/day/24) [🤩](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day24.kt)
+- Day 25: [Combo Breaker](https://adventofcode.com/2020/day/25) [🙌](https://github.com/andilau/advent-of-code-2020/blob/main/src/main/kotlin/days/Day25.kt)
 
 ### Template
 
