@@ -3,29 +3,27 @@ package days
 class Day15 : Day(15) {
     private val numbers: List<Int> = inputString.split(",").map { it.toInt() }
 
-    override fun partOne() = numbers.solveForAnswer(2020)
+    override fun partOne() = numbers.elementInVanEckSequenceAt(2020)
 
-    override fun partTwo() = numbers.solveForAnswer(30_000_000)
+    override fun partTwo() = numbers.elementInVanEckSequenceAt(30_000_000)
 
-    private fun List<Int>.solveForAnswer(abortAt: Int): Int {
-        val indexOfNumber = this.mapIndexed { i, x -> x to i }.toMap().toMutableMap()
+    private fun List<Int>.elementInVanEckSequenceAt(at: Int): Int {
+        var index = 0               // incrementing counter
+        var before: Int              // value of index when element was previously encountered
+        var element = 0             // current element of vanEck sequence
+        val lookup = IntArray(at)   // value of index when element was previously encountered
+        // lookup[0] special case for not yet encountered
+        this.forEach { lookup[it] = ++index }
 
-        var turn = this.size
-        var next = 0
-        while (true) {
-            val last = indexOfNumber.getOrDefault(next, turn)
-            indexOfNumber[next] = turn
-            next = turn - last
-            if (++turn == abortAt - 1) break
+        while (++index < at) {
+            before = lookup[element]
+            lookup[element] = index
+            element = if (before == 0) 0 else index - before
         }
-        return next
+        return element
     }
 
-    fun solveFor2020(numbers: String): Int {
-        return numbers.split(",").map { it.toInt() }.solveForAnswer(2020)
-    }
-
-    fun solveFor30000000(numbers: String): Int {
-        return numbers.split(",").map { it.toInt() }.solveForAnswer(30_000_000)
+    fun elementInVanEckSequenceAt(preamble: String, to: Int): Int {
+        return preamble.split(",").map { it.toInt() }.elementInVanEckSequenceAt(to)
     }
 }
