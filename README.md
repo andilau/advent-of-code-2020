@@ -1,8 +1,14 @@
 # Advent of Code 2020: Solutions in Kotlin
 
-My attempts at solving the [Advent of Code 2020](https://adventofcode.com/2020) with
-the [Kotlin](https://kotlinlang.org/)
-programming language.
+My solutions for [Advent of Code 2020](https://adventofcode.com/2020) in
+the [Kotlin](https://kotlinlang.org/) programming language. Advent of Code is an Advent
+calendar of small programming puzzles by [Eric Wastl](http://was.tl/). 
+
+My goal was to practice writing idiomatic Kotlin:
+- painless idiomatic Kotlin code
+- single class per day
+- shared code (DRY) between the two parts
+- acceptable speed (under ~1s)
 
 ## Solutions
 
