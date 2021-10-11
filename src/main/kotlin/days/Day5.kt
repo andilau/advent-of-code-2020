@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Binary Boarding",
+    url = "https://adventofcode.com/2020/day/5",
+    date = Date(day = 5, year = 2020)
+)
 class Day5 : Day(5) {
     override fun partOne(): Int = getSeatIds()
         .maxOf { it }

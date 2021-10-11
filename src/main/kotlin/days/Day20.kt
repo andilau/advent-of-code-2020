@@ -2,6 +2,11 @@ package days
 
 import days.Day20.Orientation.*
 
+@AdventOfCodePuzzle(
+    name = "Jurassic Jigsaw",
+    url = "https://adventofcode.com/2020/day/20",
+    date = Date(day = 20, year = 2020)
+)
 class Day20 : Day(20) {
     private val tiles: List<Tile> = readTiles(inputString)
     private val seaMonster: Set<Point> = getMonsterAsPoints()

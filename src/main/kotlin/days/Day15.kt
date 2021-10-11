@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Rambunctious Recitation",
+    url = "https://adventofcode.com/2020/day/15",
+    date = Date(day = 15, year = 2020)
+)
 class Day15 : Day(15) {
     private val numbers: List<Int> = inputString.split(",").map { it.toInt() }
 

@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Allergen Assessment",
+    url = "https://adventofcode.com/2020/day/21",
+    date = Date(day = 21, year = 2020)
+)
 class Day21 : Day(21) {
     private val food = readFood()
     private val allergens = food.values.flatten().toSet()

@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Adapter Array",
+    url = "https://adventofcode.com/2020/day/10",
+    date = Date(day = 10, year = 2020)
+)
 class Day10 : Day(10) {
     override fun partOne(): Int {
         return inputList
@@ -30,5 +35,4 @@ class Day10 : Day(10) {
         }
         return combinationsByAdapter.getValue(adapters.last())
     }
-
 }

@@ -2,6 +2,11 @@ package days
 
 import kotlin.math.absoluteValue
 
+@AdventOfCodePuzzle(
+    name = "Rain Risk",
+    url = "https://adventofcode.com/2020/day/12",
+    date = Date(day = 12, year = 2020)
+)
 class Day12 : Day(12) {
     override fun partOne(): Any {
         val ship = Ship(Point(0, 0), Heading.EAST)

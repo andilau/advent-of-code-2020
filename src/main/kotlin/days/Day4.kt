@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Passport Processing",
+    url = "https://adventofcode.com/2020/day/4",
+    date = Date(day = 4, year = 2020)
+)
 class Day4 : Day(4) {
     private val newLine = System.lineSeparator()
 

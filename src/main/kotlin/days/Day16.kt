@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Ticket Translation",
+    url = "https://adventofcode.com/2020/day/16",
+    date = Date(day = 16, year = 2020)
+)
 class Day16 : Day(16) {
     private val rules = inputList.takeWhile(String::isNotEmpty).map(TicketRule.Companion::parse)
     private val ownTicket = inputList.dropWhile { it != "your ticket:" }.drop(1).first().split(",").map { it.toInt() }

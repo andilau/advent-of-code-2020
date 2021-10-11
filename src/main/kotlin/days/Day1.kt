@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Report Repair",
+    url = "https://adventofcode.com/2020/day/1",
+    date = Date(day = 1, year = 2020)
+)
 class Day1 : Day(1) {
     override fun partOne(): Any {
         return inputList

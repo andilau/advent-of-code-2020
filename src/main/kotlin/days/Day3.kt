@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Toboggan Trajectory",
+    url = "https://adventofcode.com/2020/day/3",
+    date = Date(day = 3, year = 2020)
+)
 class Day3 : Day(3) {
     override fun partOne(): Any =
         countTrees(3 to 1)
