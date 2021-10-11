@@ -1,7 +1,10 @@
 package days
 
-//typealias Point3D = Triple<Int, Int, Int>
-
+@AdventOfCodePuzzle(
+    name = "Conway Cubes",
+    url = "https://adventofcode.com/2020/day/17",
+    date = Date(day = 17, year = 2020)
+)
 class Day17 : Day(17) {
     override fun partOne(): Int {
         return generateSequence(

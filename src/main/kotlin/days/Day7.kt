@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Handy Haversacks",
+    url = "https://adventofcode.com/2020/day/7",
+    date = Date(day = 7, year = 2020)
+)
 class Day7 : Day(7) {
     private val bagRules: Set<BagRule> = parseLines(inputList)
 

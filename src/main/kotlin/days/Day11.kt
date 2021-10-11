@@ -2,6 +2,11 @@ package days
 
 typealias Seat = Pair<Int, Int>
 
+@AdventOfCodePuzzle(
+    name = "Seating System",
+    url = "https://adventofcode.com/2020/day/11",
+    date = Date(day = 11, year = 2020)
+)
 class Day11 : Day(11) {
     private val initialSeats: Map<Seat, Char> = getSeatPlan()
 

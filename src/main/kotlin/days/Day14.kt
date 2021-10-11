@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Docking Data",
+    url = "https://adventofcode.com/2020/day/14",
+    date = Date(day = 14, year = 2020)
+)
 class Day14 : Day(14) {
     private val maskPattern = """mask = ([01X]{36})""".toRegex()
     @Suppress("RegExpRedundantEscape")

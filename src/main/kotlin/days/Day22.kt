@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Crab Combat",
+    url = "https://adventofcode.com/2020/day/22",
+    date = Date(day = 22, year = 2020)
+)
 class Day22 : Day(22) {
     override fun partOne(): Int {
         val deck1: Deck = readDeckOf("Player 1")

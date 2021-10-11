@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Encoding Error",
+    url = "https://adventofcode.com/2020/day/9",
+    date = Date(day = 9, year = 2020)
+)
 class Day9 : Day(9) {
     var preambleSize: Int = 25
     val list = inputList.map { it.toLong() }

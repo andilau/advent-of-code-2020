@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Password Philosophy",
+    url = "https://adventofcode.com/2020/day/2",
+    date = Date(day = 2, year = 2020)
+)
 class Day2 : Day(2) {
     override fun partOne() = inputList
         .map { PasswordValidation.parse(it) }

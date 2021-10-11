@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Shuttle Search",
+    url = "https://adventofcode.com/2020/day/13",
+    date = Date(day = 13, year = 2020)
+)
 class Day13 : Day(13) {
     private val target = inputList[0].toInt()
     private val busses = inputList[1]

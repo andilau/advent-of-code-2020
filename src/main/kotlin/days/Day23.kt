@@ -1,5 +1,10 @@
 package days
 
+@AdventOfCodePuzzle(
+    name = "Crab Cups",
+    url = "https://adventofcode.com/2020/day/23",
+    date = Date(day = 23, year = 2020)
+)
 class Day23 : Day(23) {
     override fun partOne(): String {
         return CupGame(inputString)

@@ -1,6 +1,10 @@
 package days
 
-// https://www.baeldung.com/kotlin/regular-expressions
+@AdventOfCodePuzzle(
+    name = "Operation Order",
+    url = "https://adventofcode.com/2020/day/18",
+    date = Date(day = 18, year = 2020)
+)
 class Day18 : Day(18) {
     override fun partOne() = inputList.sumOf { equation ->
         solve(equation, Day18::solveFromLeft)
