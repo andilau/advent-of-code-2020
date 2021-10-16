@@ -9,32 +9,27 @@ import kotlin.time.measureTimedValue
 
 @ExperimentalTime
 object Runner {
-    private val regex = "\\D".toRegex()
     private val reflections = Reflections("days")
 
     @JvmStatic
     fun main(args: Array<String>) {
-        if (args.isNotEmpty()) {
-            val day = try {
-                args[0].toInt()
-            } catch (e: NumberFormatException) {
-                printError("Day argument must be an integer")
-                return
-            }
+        val allDayClasses = getAllDayClasses()
+        val solutions = getAllDayClasses().map { dayNumber(it.simpleName) }.toSet()
 
-            getAllDayClasses()
-                .filter { dayNumber(it.simpleName) == day }
-                .takeIf { it.isNotEmpty() }
-                ?.forEach { printDay(it) } ?: printError("Day $day not found")
-        }
-        else {
-            getAllDayClasses()
-                .sortedBy { dayNumber(it.simpleName) }
-                .forEach { printDay(it) }
-        }
+        val days: List<Int>? = args
+            .map { it.toIntOrNull() ?: error("Day argument must be an integer") }
+            .filter { if (it in solutions) true else error("No solution for day $it") }
+            .takeIf { it.isNotEmpty() }
+
+        allDayClasses
+            .filter { days == null || dayNumber(it.simpleName) in days }
+            .sortedBy { dayNumber(it.simpleName) }
+            .takeIf { it.isNotEmpty() }
+            ?.forEach { printDay(it) }
+            ?: printError("Days $days not found")
     }
 
-    private fun getAllDayClasses(): MutableSet<Class<out Day>> =
+    private fun getAllDayClasses(): Set<Class<out Day>> =
         reflections.getSubTypesOf(Day::class.java)
 
     private fun printDay(dayClass: Class<out Day>) {
@@ -58,6 +53,8 @@ object Runner {
     private fun printError(message: String) =
         System.err.println("\n=== ERROR ===\n$message")
 
-    private fun dayNumber(dayClassName: String) =
-        dayClassName.replace(regex, "").toIntOrNull() ?: 0
+    private fun dayNumber(dayClassName: String): Int =
+        NUMBER_PATTERN.find(dayClassName)?.value?.toIntOrNull() ?: 0
 }
+
+private val NUMBER_PATTERN = Regex("""(\d+)""")
