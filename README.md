@@ -5,10 +5,10 @@ the [Kotlin](https://kotlinlang.org/) programming language. Advent of Code is an
 calendar of small programming puzzles by [Eric Wastl](http://was.tl/). 
 
 My goal was to practice writing idiomatic Kotlin:
-- painless idiomatic Kotlin code
+- painless functional-style code
 - single class per day
 - shared code (DRY) between the two parts
-- acceptable speed (under ~1s)
+- acceptable speed (under ~1s) TODO ~~Day15~~, Day23
 
 ## Solutions
 
