@@ -9,28 +9,26 @@ import kotlin.time.measureTimedValue
 
 @ExperimentalTime
 object Runner {
-    private val reflections = Reflections("days")
+    private val dayClasses by lazy {
+        Reflections("days").getSubTypesOf(Day::class.java)
+    }
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val allDayClasses = getAllDayClasses()
-        val solutions = getAllDayClasses().map { dayNumber(it.simpleName) }.toSet()
+        val solutions = dayClasses.map { dayNumber(it.simpleName) }.toSet()
 
         val days: List<Int>? = args
             .map { it.toIntOrNull() ?: error("Day argument must be an integer") }
-            .filter { if (it in solutions) true else error("No solution for day $it") }
+            .filter { it in solutions || error("No solution for day $it found") }
             .takeIf { it.isNotEmpty() }
 
-        allDayClasses
-            .filter { days == null || dayNumber(it.simpleName) in days }
+        dayClasses
             .sortedBy { dayNumber(it.simpleName) }
+            .filter { days == null || dayNumber(it.simpleName) in days }
             .takeIf { it.isNotEmpty() }
             ?.forEach { printDay(it) }
             ?: printError("Days $days not found")
     }
-
-    private fun getAllDayClasses(): Set<Class<out Day>> =
-        reflections.getSubTypesOf(Day::class.java)
 
     private fun printDay(dayClass: Class<out Day>) {
         println("\n=== DAY ${dayNumber(dayClass.simpleName)} (${dayClass.simpleName}) ===")
