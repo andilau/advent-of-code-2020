@@ -3,76 +3,76 @@ package days
 class Day23 : Day(23) {
     override fun partOne(): String {
         return CupGame(inputString)
-            .firstCupAfterRound(100)
-            .nextCupsAsString()
+            .playRounds(100)
+            .getCupsAfter(1)
+            .getCupsAsString()
     }
 
     override fun partTwo(): Long {
         return CupGame(inputString, 1_000_000)
-            .firstCupAfterRound(10_000_000)
-            .nextTwoCups()
-            .map { it.value.toLong() }
+            .playRounds(10_000_000)
+            .getCupsAfter(1)
+            .take(2)
+            .map { it.toLong() }
             .reduce { a, b -> a * b }
     }
 
     class CupGame(val input: String, numberOfCups: Int = input.length) {
-        private val lookup: Array<Cup> = Array(numberOfCups + 1) { Cup(it) }
-        private var currentCup: Cup
+        private val nextCupOf: IntArray = IntArray(numberOfCups + 1) { it + 1 }
+        private val cups: List<Int> = input.map(Character::getNumericValue)
+        private var currentCup: Int = cups.first()
 
         init {
-            val cups: List<Cup> = input
-                .map { Character.getNumericValue(it) }
-                .map { lookup[it] } + (input.length + 1..numberOfCups).map { lookup[it] }
-            currentCup = cups.first()
-            cups.zipWithNext { a, b -> a.next = b }
-            cups.last().next = cups.first()
+            cups.zipWithNext { a, b -> nextCupOf[a] = b }
+            nextCupOf[cups.last()] = cups.first()
+            if (cups.size < numberOfCups) {
+                // nextCupOf elements are preset in property initializer
+                nextCupOf[cups.last()] = cups.size + 1
+                nextCupOf[numberOfCups] = cups.first()
+            }
         }
 
-        fun firstCupAfterRound(times: Int): Cup {
+        fun playRounds(times: Int): CupGame {
             repeat(times) {
-                val threeCups: List<Cup> = currentCup.nextThreeCups()
-                val insertAfterCup = findDestination(currentCup, threeCups)
-                moveCupsAfter(insertAfterCup, threeCups)
-                currentCup = currentCup.next
+                val a = nextCupOf[currentCup]
+                val b = nextCupOf[a]
+                val c = nextCupOf[b]
+
+                val destination = findDestination(currentCup, a, b, c)
+
+                // link currentCup
+                nextCupOf[currentCup] = nextCupOf[c]
+                currentCup = nextCupOf[currentCup]
+
+                // link three elements
+                val save = nextCupOf[destination]
+                nextCupOf[destination] = a
+                nextCupOf[c] = save
             }
-            return lookup[1]
+            return this
         }
 
-        private fun findDestination(cup: Cup, excludeCups: List<Cup>): Cup {
-            val exclude = excludeCups.map { it.value }.toSet()
+        fun getCupsAfter(cup: Int): Sequence<Int> {
+            var current = nextCupOf[cup]
+            return sequence {
+                while (current != cup) {
+                    yield(current)
+                    current = nextCupOf[current]
+                }
+            }
+        }
 
-            var pos = cup.value - 1
+        private fun findDestination(cup: Int, a: Int, b: Int, c: Int): Int {
+            var position = cup - 1
             while (true) {
-                if (pos !in exclude && pos >= 1) break
-                if (pos == 0) pos = lookup.size - 1
-                else pos--
+                if (position != a && position != b && position != c && position >= 1) break
+                if (position == 0) position = nextCupOf.size - 1
+                else position--
             }
-            return lookup[pos]
-        }
-
-        private fun moveCupsAfter(insertAfterCup: Cup, three: List<Cup>) {
-            val save = insertAfterCup.next
-            currentCup.next = three.last().next
-            insertAfterCup.next = three.first()
-            three.last().next = save
+            return position
         }
     }
 
-    data class Cup(val value: Int) {
-        lateinit var next: Cup
-
-        fun nextCupsAsString(): String = buildString {
-            var current = this@Cup.next
-            while (current != this@Cup) {
-                append(current.value.toString())
-                current = current.next
-            }
-        }
-
-        fun nextThreeCups(): List<Cup> =
-            listOf(this.next, this.next.next, this.next.next.next)
-
-        fun nextTwoCups(): List<Cup> =
-            listOf(this.next, this.next.next)
-    }
+    private fun Sequence<Int>.getCupsAsString(): String = joinToString("")
 }
+
