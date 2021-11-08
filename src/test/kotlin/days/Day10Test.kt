@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 10")
 class Day10Test {
-    private val day = Day10()
+    val ints = listOf(16, 10, 15, 5, 1, 11, 7, 19, 6, 12, 4)
 
     @DisplayName("Part 1")
     @Test
     fun testPartOne() {
-        assertThat(day.partOne()).isEqualTo(5 * 7)
+        assertThat(Day10(ints).partOne()).isEqualTo(5 * 7)
     }
 
     @DisplayName("Part 2")
     @Test
     fun testPartTwo() {
-        assertThat(day.partTwo()).isEqualTo(8L)
+        assertThat(Day10(ints).partTwo()).isEqualTo(8L)
     }
 }

@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 9")
 class Day9Test {
-    private val day = Day9()
+    val input = listOf(
+        35, 20, 15, 25, 47, 40, 62, 55, 65, 95, 102,
+        117, 150, 182, 127, 219, 299, 277, 309, 576
+    ).map { it.toLong() }
 
-    init {
-        day.preambleSize = 5
-    }
+    private val day = Day9(input).apply { preambleSize = 5 }
 
     @DisplayName("Part 1")
     @Test

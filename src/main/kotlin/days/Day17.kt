@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/17",
     date = Date(day = 17, year = 2020)
 )
-class Day17 : Day(17) {
+class Day17(val input: List<String>) : Day() {
     override fun partOne(): Int {
         return generateSequence(
             readInput { x, y -> Point3D(x, y, 0) }) { space -> space.next() }
@@ -23,9 +23,9 @@ class Day17 : Day(17) {
 
     private fun readInput(pointFunction: (Int, Int) -> Point): Set<Point> {
         val space = mutableSetOf<Point>()
-        for (y in inputList.indices) {
-            for (x in inputList[y].indices) {
-                if (inputList[y][x] == '#')
+        for (y in input.indices) {
+            for (x in input[y].indices) {
+                if (input[y][x] == '#')
                     space.add(pointFunction(x, y))
             }
         }

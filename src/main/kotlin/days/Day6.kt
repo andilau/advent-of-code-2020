@@ -5,9 +5,9 @@ package days
     url = "https://adventofcode.com/2020/day/6",
     date = Date(day = 6, year = 2020)
 )
-class Day6 : Day(6) {
+class Day6(input: String) : Day() {
     private val newLine = System.lineSeparator()
-    private val groups: List<String> = inputString
+    private val groups: List<String> = input
         .split("$newLine$newLine")
 
     override fun partOne(): Int {

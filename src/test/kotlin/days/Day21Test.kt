@@ -6,17 +6,21 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 21")
 class Day21Test {
-    private val day = Day21()
+    private val lines = """
+        mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+        trh fvjkl sbzzf mxmxvkd (contains dairy)
+        sqjhc fvjkl (contains soy)
+        sqjhc mxmxvkd sbzzf (contains fish)""".trimIndent().lines()
 
     @Test
     @DisplayName("Part 1")
     fun testPartOne() {
-        assertThat(day.partOne()).isEqualTo(5)
+        assertThat(Day21(lines).partOne()).isEqualTo(5)
     }
 
     @Test
     @DisplayName("Part 2")
     fun testPartTwo() {
-        assertThat(day.partTwo()).isEqualTo("mxmxvkd,sqjhc,fvjkl")
+        assertThat(Day21(lines).partTwo()).isEqualTo("mxmxvkd,sqjhc,fvjkl")
     }
 }

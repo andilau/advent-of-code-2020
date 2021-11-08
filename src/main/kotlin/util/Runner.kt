@@ -31,12 +31,30 @@ object Runner {
     }
 
     private fun printDay(dayClass: Class<out Day>) {
-        println("\n=== DAY ${dayNumber(dayClass.simpleName)} (${dayClass.simpleName}) ===")
-        val day = dayClass.constructors[0].newInstance() as Day
+        val dayNumber: Int = dayNumber(dayClass.simpleName)
+        println("\n=== DAY $dayNumber (${dayClass.simpleName}) ===")
 
-        val partOne = measureTimedValue { day.partOne() }
-        val partTwo = measureTimedValue { day.partTwo() }
-        printParts(partOne, partTwo)
+        var day: Day? = null
+        try {
+            day = dayClass.constructors[0].newInstance() as Day
+        } catch (e: IllegalArgumentException) {
+            when (dayClass.constructors[0].genericParameterTypes[0].typeName) {
+                "java.util.List<java.lang.Integer>" -> {
+                    day = dayClass.constructors[0].newInstance(InputReader.getInputAsListOfInt(dayNumber)) as Day
+                }
+                "java.util.List<java.lang.String>" -> {
+                    day = dayClass.constructors[0].newInstance(InputReader.getInputAsList(dayNumber)) as Day
+                }
+                "java.lang.String" -> {
+                    day = dayClass.constructors[0].newInstance(InputReader.getInputAsString(dayNumber)) as Day
+                }
+            }
+        }
+        if (day is Day) {
+            val partOne = measureTimedValue { day.partOne() }
+            val partTwo = measureTimedValue { day.partTwo() }
+            printParts(partOne, partTwo)
+        }
     }
 
     private fun printParts(partOne: TimedValue<Any>, partTwo: TimedValue<Any>) {

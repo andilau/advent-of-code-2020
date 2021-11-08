@@ -6,17 +6,31 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 22")
 class Day22Test {
-    private val day = Day22()
+    private val lines = """
+        Player 1:
+        9
+        2
+        6
+        3
+        1
+        
+        Player 2:
+        5
+        8
+        4
+        7
+        10
+        """.trimIndent().lines()
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
-        assertThat(day.partOne()).isEqualTo(306)
+        assertThat(Day22(lines).partOne()).isEqualTo(306)
     }
 
     @Test
     @DisplayName("Part 2")
     fun testPartTwo() {
-        assertThat(day.partTwo()).isEqualTo(291)
+        assertThat(Day22(lines).partTwo()).isEqualTo(291)
     }
 }

@@ -5,9 +5,9 @@ package days
     url = "https://adventofcode.com/2020/day/13",
     date = Date(day = 13, year = 2020)
 )
-class Day13 : Day(13) {
-    private val target = inputList[0].toInt()
-    private val busses = inputList[1]
+class Day13(val lines: List<String>) : Day() {
+    private val target = lines[0].toInt()
+    private val busses = lines[1]
         .split(",")
         .mapNotNull { it.toIntOrNull() }
 
@@ -22,7 +22,7 @@ class Day13 : Day(13) {
         line - (target % line)
 
     override fun partTwo(): Long {
-        return test(inputList[1])
+        return test(lines[1])
     }
 
     fun test(input: String): Long {

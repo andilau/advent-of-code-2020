@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/22",
     date = Date(day = 22, year = 2020)
 )
-class Day22 : Day(22) {
+class Day22(val lines: List<String>) : Day() {
     override fun partOne(): Int {
         val deck1: Deck = readDeckOf("Player 1")
         val deck2: Deck = readDeckOf("Player 2")
@@ -53,7 +53,7 @@ class Day22 : Day(22) {
     }
 
     private fun readDeckOf(playerName: String): Deck {
-        return inputList
+        return lines
             .asSequence()
             .dropWhile { line -> !line.startsWith(playerName) }
             .drop(1)

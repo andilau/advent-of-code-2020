@@ -5,9 +5,9 @@ package days
     url = "https://adventofcode.com/2020/day/19",
     date = Date(day = 19, year = 2020)
 )
-class Day19 : Day(19) {
-    private val dictionary: MutableMap<String, List<List<String>>> = readRules(inputList)
-    private val messages = readMessages(inputList)
+class Day19(lines: List<String>) : Day() {
+    private val dictionary: MutableMap<String, List<List<String>>> = readRules(lines)
+    private val messages = readMessages(lines)
 
     override fun partOne() = messages.count { match(it) }
 

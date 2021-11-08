@@ -7,8 +7,8 @@ import days.Day20.Orientation.*
     url = "https://adventofcode.com/2020/day/20",
     date = Date(day = 20, year = 2020)
 )
-class Day20 : Day(20) {
-    private val tiles: List<Tile> = readTiles(inputString)
+class Day20(input: String) : Day() {
+    private val tiles: List<Tile> = readTiles(input)
     private val seaMonster: Set<Point> = getMonsterAsPoints()
 
     override fun partOne(): Long = tiles

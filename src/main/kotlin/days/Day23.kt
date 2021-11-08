@@ -5,22 +5,33 @@ package days
     url = "https://adventofcode.com/2020/day/23",
     date = Date(day = 23, year = 2020)
 )
-class Day23 : Day(23) {
+class Day23(val input: String) : Day() {
     override fun partOne(): String {
-        return CupGame(inputString)
+        return CupGame(input)
             .playRounds(100)
             .getCupsAfter(1)
             .getCupsAsString()
     }
 
     override fun partTwo(): Long {
-        return CupGame(inputString, 1_000_000)
+        return CupGame(input, 1_000_000)
             .playRounds(10_000_000)
             .getCupsAfter(1)
             .take(2)
             .map { it.toLong() }
             .reduce { a, b -> a * b }
     }
+
+    fun playRoundsAndGetCups(times: Int = 100) = CupGame(input)
+        .playRounds(times)
+        .getCupsAfter(1)
+        .getCupsAsString()
+
+/*
+input: 389125467
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |  #cup
+| 2 | 5 | 8 | 6 | 4 | 7 | 3 | 9 | 1 |  points to #cup
+*/
 
     class CupGame(val input: String, numberOfCups: Int = input.length) {
         private val nextCupOf: IntArray = IntArray(numberOfCups + 1) { it + 1 }
@@ -80,4 +91,3 @@ class Day23 : Day(23) {
 
     private fun Sequence<Int>.getCupsAsString(): String = joinToString("")
 }
-

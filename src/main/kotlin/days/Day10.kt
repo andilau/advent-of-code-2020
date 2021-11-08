@@ -5,11 +5,9 @@ package days
     url = "https://adventofcode.com/2020/day/10",
     date = Date(day = 10, year = 2020)
 )
-class Day10 : Day(10) {
+class Day10(private val ints: List<Int>) : Day() {
     override fun partOne(): Int {
-        return inputList
-            .asSequence()
-            .map { it.toInt() }
+        return ints
             .plus(0)
             .sorted()
             .zipWithNext { a, b -> b - a }
@@ -19,10 +17,9 @@ class Day10 : Day(10) {
     }
 
     override fun partTwo(): Long {
-        val input: List<Int> = inputList.map { it.toInt() }
-        val adapters = input
+        val adapters = ints
             .plus(0)
-            .plus(input.maxOrNull()!! + 3)
+            .plus(ints.maxOrNull()!! + 3)
             .sorted()
 
         val combinationsByAdapter: MutableMap<Int, Long> = mutableMapOf(0 to 1L)

@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/5",
     date = Date(day = 5, year = 2020)
 )
-class Day5 : Day(5) {
+class Day5(val input: List<String>) : Day() {
     override fun partOne(): Int = getSeatIds()
         .maxOf { it }
 
@@ -20,7 +20,7 @@ class Day5 : Day(5) {
         }!!
     }
 
-    private fun getSeatIds() = inputList
+    private fun getSeatIds() = input
         .map { BoardingPass.parse(it) }
         .map { p -> p.getSeatId() }
         .toSet()
