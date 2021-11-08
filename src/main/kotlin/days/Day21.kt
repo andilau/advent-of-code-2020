@@ -5,8 +5,8 @@ package days
     url = "https://adventofcode.com/2020/day/21",
     date = Date(day = 21, year = 2020)
 )
-class Day21 : Day(21) {
-    private val food = readFood()
+class Day21(lines: List<String>) : Day() {
+    private val food = readFood(lines)
     private val allergens = food.values.flatten().toSet()
 
     override fun partOne(): Int {
@@ -50,8 +50,8 @@ class Day21 : Day(21) {
         return allIngredients - badIngredients
     }
 
-    private fun readFood(): Map<Set<String>, Set<String>> =
-        inputList.associate { line ->
+    private fun readFood(lines: List<String>): Map<Set<String>, Set<String>> =
+        lines.associate { line ->
             val foods = line.substringBefore(" (contains ")
                 .split(" ").toSet()
             val allergens = line.substringAfter(" (contains ").substringBefore(")")

@@ -5,18 +5,20 @@ package days
     url = "https://adventofcode.com/2020/day/14",
     date = Date(day = 14, year = 2020)
 )
-class Day14 : Day(14) {
+class Day14(val input: List<String>) : Day() {
     private val maskPattern = """mask = ([01X]{36})""".toRegex()
+
     @Suppress("RegExpRedundantEscape")
     private val memPattern = """mem\[(\d+)\] = (\d+)""".toRegex()
 
     override fun partOne(): Any {
         var mask = BitMaskSystem()
         val memory: MutableMap<Int, Long> = mutableMapOf()
-        inputList.forEach {
+        input.forEach {
             if (maskPattern.matches(it)) {
                 mask = BitMaskSystem(maskPattern.find(it)!!.groupValues[1])
-            } else if (memPattern.matches(it)) {
+            }
+            else if (memPattern.matches(it)) {
                 val (address, number) = memPattern.find(it)!!.destructured
                 memory[address.toInt()] = mask.convert(number.toLong())
             }
@@ -36,10 +38,11 @@ class Day14 : Day(14) {
     override fun partTwo(): Any {
         val memory: MutableMap<Long, Long> = mutableMapOf()
         var mad = MemoryAddressDecoder()
-        inputList.forEach {
+        input.forEach {
             if (it.startsWith("mask = ")) {
                 mad = MemoryAddressDecoder(it.substringAfter("mask = "))
-            } else if (memPattern.matches(it)) {
+            }
+            else if (memPattern.matches(it)) {
                 val (addressString, numberString) = memPattern.find(it)!!.destructured
                 val addressesFor: List<Long> = mad.getAddressesFor(addressString.toLong())
                 addressesFor.forEach { address -> memory[address] = numberString.toLong() }

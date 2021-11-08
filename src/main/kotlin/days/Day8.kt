@@ -5,8 +5,8 @@ package days
     url = "https://adventofcode.com/2020/day/8",
     date = Date(day = 8, year = 2020)
 )
-class Day8 : Day(8) {
-    private val program = inputList.map { Instruction.of(it) }
+class Day8(lines: List<String>) : Day() {
+    private val program = lines.map { Instruction.of(it) }
 
     override fun partOne(): Int {
         return try {

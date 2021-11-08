@@ -5,12 +5,12 @@ package days
     url = "https://adventofcode.com/2020/day/18",
     date = Date(day = 18, year = 2020)
 )
-class Day18 : Day(18) {
-    override fun partOne() = inputList.sumOf { equation ->
+class Day18(val lines: List<String>) : Day() {
+    override fun partOne() = lines.sumOf { equation ->
         solve(equation, Day18::solveFromLeft)
     }
 
-    override fun partTwo() = inputList.sumOf { equation ->
+    override fun partTwo() = lines.sumOf { equation ->
         solve(equation, Day18::solveAddFirst)
     }
 

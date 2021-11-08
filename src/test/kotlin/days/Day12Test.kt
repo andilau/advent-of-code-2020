@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 12")
 class Day12Test {
-    private val day = Day12()
+    val commands = listOf("F10", "N3", "F7", "R90", "F11")
+
+    private
+    val day = Day12(commands)
 
     @DisplayName("Part 1")
     @Test

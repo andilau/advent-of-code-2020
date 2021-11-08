@@ -6,17 +6,19 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 1")
 class Day1Test {
-    private val dayOne = Day1()
+    val input = listOf(1721, 979, 366, 299, 675, 1456)
 
     @Test
     @DisplayName("Part 1")
-    fun testPart1() {
-        assertThat(dayOne.partOne()).isEqualTo(514_579)
+    internal fun sampleDataPart1() {
+        val answer = Day1(input).partOne()
+        assertThat(answer).isEqualTo(514_579)
     }
 
     @Test
     @DisplayName("Part 2")
-    fun testPart2() {
-        assertThat(dayOne.partTwo()).isEqualTo(241_861_950)
+    internal fun sampleDataPart2() {
+        val answer = Day1(input).partTwo()
+        assertThat(answer).isEqualTo(241_861_950)
     }
 }

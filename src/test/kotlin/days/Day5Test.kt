@@ -6,11 +6,15 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 5")
 class Day5Test {
-    private val day = Day5()
+    val input = listOf(
+        "BFFFBBFRRR",
+        "FFFBBBFRRR",
+        "BBFFBBFRLL"
+    )
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
-        assertThat(day.partOne()).isEqualTo(820)
+        assertThat(Day5(input).partOne()).isEqualTo(820)
     }
 }

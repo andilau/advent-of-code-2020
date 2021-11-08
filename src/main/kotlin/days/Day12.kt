@@ -7,24 +7,25 @@ import kotlin.math.absoluteValue
     url = "https://adventofcode.com/2020/day/12",
     date = Date(day = 12, year = 2020)
 )
-class Day12 : Day(12) {
+class Day12(private val commands: List<String>) : Day() {
     override fun partOne(): Any {
         val ship = Ship(Point(0, 0), Heading.EAST)
 
-        inputList.forEach { instruction ->
-            val command = instruction.first()
-            val value = instruction.drop(1).toInt()
-            when (command) {
-                'N' -> ship.move(Heading.NORTH, value)
-                'S' -> ship.move(Heading.SOUTH, value)
-                'E' -> ship.move(Heading.EAST, value)
-                'W' -> ship.move(Heading.WEST, value)
-                'F' -> ship.forward(value)
-                'L' -> ship.turnLeft(value / 90)
-                'R' -> ship.turnRight(value / 90)
-                else -> throw IllegalArgumentException("unhandled command: $command")
+        commands
+            .forEach { instruction ->
+                val command = instruction.first()
+                val value = instruction.drop(1).toInt()
+                when (command) {
+                    'N' -> ship.move(Heading.NORTH, value)
+                    'S' -> ship.move(Heading.SOUTH, value)
+                    'E' -> ship.move(Heading.EAST, value)
+                    'W' -> ship.move(Heading.WEST, value)
+                    'F' -> ship.forward(value)
+                    'L' -> ship.turnLeft(value / 90)
+                    'R' -> ship.turnRight(value / 90)
+                    else -> throw IllegalArgumentException("unhandled command: $command")
+                }
             }
-        }
         return ship.manhattanDistanceTo(Point(0, 0))
     }
 
@@ -32,20 +33,21 @@ class Day12 : Day(12) {
         val ship = Ship(Point(0, 0), Heading.EAST)
         val waypoint = Waypoint(Point(10, 1))
 
-        inputList.forEach { instruction ->
-            val command = instruction.first()
-            val amount = instruction.drop(1).toInt()
-            when (command) {
-                'N' -> waypoint.move(Heading.NORTH, amount)
-                'S' -> waypoint.move(Heading.SOUTH, amount)
-                'E' -> waypoint.move(Heading.EAST, amount)
-                'W' -> waypoint.move(Heading.WEST, amount)
-                'F' -> ship.moveWith(amount * waypoint.at)
-                'L' -> waypoint.turnLeft(amount / 90)
-                'R' -> waypoint.turnRight(amount / 90)
-                else -> throw IllegalArgumentException("unhandled command: $command")
+        commands
+            .forEach { instruction ->
+                val command = instruction.first()
+                val amount = instruction.drop(1).toInt()
+                when (command) {
+                    'N' -> waypoint.move(Heading.NORTH, amount)
+                    'S' -> waypoint.move(Heading.SOUTH, amount)
+                    'E' -> waypoint.move(Heading.EAST, amount)
+                    'W' -> waypoint.move(Heading.WEST, amount)
+                    'F' -> ship.moveWith(amount * waypoint.at)
+                    'L' -> waypoint.turnLeft(amount / 90)
+                    'R' -> waypoint.turnRight(amount / 90)
+                    else -> throw IllegalArgumentException("unhandled command: $command")
+                }
             }
-        }
         return ship.manhattanDistanceTo(Point(0, 0))
     }
 

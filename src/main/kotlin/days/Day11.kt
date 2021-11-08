@@ -7,8 +7,8 @@ typealias Seat = Pair<Int, Int>
     url = "https://adventofcode.com/2020/day/11",
     date = Date(day = 11, year = 2020)
 )
-class Day11 : Day(11) {
-    private val initialSeats: Map<Seat, Char> = getSeatPlan()
+class Day11(input: List<String>) : Day() {
+    private val initialSeats: Map<Seat, Char> = getSeatPlan(input)
 
     private val neighbors = listOf(
         -1 to -1, -1 to 0, -1 to 1,
@@ -30,9 +30,9 @@ class Day11 : Day(11) {
         .values
         .count { it == '#' }
 
-    private fun getSeatPlan(): Map<Seat, Char> {
+    private fun getSeatPlan(input: List<String>): Map<Seat, Char> {
         val seats: MutableMap<Seat, Char> = mutableMapOf()
-        for ((y, line) in inputList.withIndex()) {
+        for ((y, line) in input.withIndex()) {
             line.indices.map { x ->
                 seats[x to y] = line[x]
             }

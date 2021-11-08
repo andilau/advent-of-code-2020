@@ -4,7 +4,8 @@ My solutions for [Advent of Code 2020](https://adventofcode.com/2020) in
 the [Kotlin](https://kotlinlang.org/) programming language. Advent of Code is an Advent
 calendar of small programming puzzles by [Eric Wastl](http://was.tl/). 
 
-My goal was to practice writing idiomatic Kotlin:
+My goal was: 
+- practice writing idiomatic Kotlin
 - painless functional-style code
 - single class per day
 - shared code (DRY) between the two parts

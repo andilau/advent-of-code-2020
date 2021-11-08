@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/24",
     date = Date(day = 24, year = 2020)
 )
-class Day24 : Day(24) {
+class Day24(val lines: List<String>) : Day() {
     override fun partOne(): Int = blackTilesOnDayOne().count()
 
     override fun partTwo(): Int =
@@ -15,7 +15,7 @@ class Day24 : Day(24) {
             .count()
 
     private fun blackTilesOnDayOne(): Set<Tile> =
-        inputList
+        lines
             .map { line -> pathToTile(line) }
             .groupBy { it }
             .filterValues { it.count() % 2 == 1 }

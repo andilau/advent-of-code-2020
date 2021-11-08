@@ -5,16 +5,16 @@ package days
     url = "https://adventofcode.com/2020/day/4",
     date = Date(day = 4, year = 2020)
 )
-class Day4 : Day(4) {
+class Day4(val input: String) : Day() {
     private val newLine = System.lineSeparator()
 
     override fun partOne(): Any =
-        inputString.split("$newLine$newLine")
+        input.split("$newLine$newLine")
             .map { Passport.parse(it) }
             .count(Passport::validateRequiredFields)
 
     override fun partTwo(): Any {
-        return inputString.split("$newLine$newLine")
+        return input.split("$newLine$newLine")
             .map { Passport.parse(it) }
             .filter(Passport::validateRequiredFields)
             .filter(Passport::validateFieldValues)

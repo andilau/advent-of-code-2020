@@ -6,17 +6,21 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Day 17")
 class Day17Test {
-    private val day = Day17()
+    private val plane = """
+        .#.
+        ..#
+        ###
+        """.trimIndent().lines()
 
     @DisplayName("Part 1")
     @Test
     fun testPartOne() {
-        assertThat(day.partOne()).isEqualTo(112)
+        assertThat(Day17(plane).partOne()).isEqualTo(112)
     }
 
     @DisplayName("Part 2")
     @Test
     fun testPartTwo() {
-        assertThat(day.partTwo()).isEqualTo(848)
+        assertThat(Day17(plane).partTwo()).isEqualTo(848)
     }
 }

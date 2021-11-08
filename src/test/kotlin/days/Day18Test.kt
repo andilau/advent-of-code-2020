@@ -1,62 +1,47 @@
 package days
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.TestFactory
 
 @DisplayName("Day 18")
 class Day18Test {
-    private val day = Day18()
+    val day = Day18(emptyList())
 
+    @TestFactory
     @DisplayName("Part 1")
-    @Nested
-    inner class Part1 {
-        @Test
-        fun testPartOne() {
-            assertThat(day.partOne()).isEqualTo(202_553_439_706L)
+    fun testPartOneData() = testData
+        .map { (input, expected) ->
+            DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                Assertions.assertEquals(expected, day.testPartOne(input))
+            }
         }
 
-        @TestFactory
-        fun testPartOneData() = testData
-            .map { (input, expected) ->
-                DynamicTest.dynamicTest("when I start with $input then I get $expected") {
-                    Assertions.assertEquals(expected, day.testPartOne(input))
-                }
-            }
+    private val testData = listOf(
+        "1 + 2 * 3 + 4 * 5 + 6" to 71L,
+        "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
+        "2 * 3 + (4 * 5)" to 26L,
+        "5 + (8 * 3 + 9 + 3 * 4 * 3)" to 437L,
+        "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" to 12240L,
+        "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" to 13632L
+    )
 
-        private val testData = listOf(
-            "1 + 2 * 3 + 4 * 5 + 6" to 71L,
-            "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
-            "2 * 3 + (4 * 5)" to 26L,
-            "5 + (8 * 3 + 9 + 3 * 4 * 3)" to 437L,
-            "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" to 12240L,
-            "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" to 13632L
-        )
-    }
-
+    @TestFactory
     @DisplayName("Part 2")
-    @Nested
-    inner class Part2 {
-
-        @Test
-        fun testPartTwo() {
-            assertThat(day.partTwo()).isEqualTo(88_534_268_715_686L)
+    fun testPartTwoData() = testData2
+        .map { (input, expected) ->
+            DynamicTest.dynamicTest("when I start with $input then I get $expected") {
+                Assertions.assertEquals(expected, day.testPartTwo(input))
+            }
         }
 
-        @TestFactory
-        fun testPartOneData() = testData2
-            .map { (input, expected) ->
-                DynamicTest.dynamicTest("when I start with $input then I get $expected") {
-                    Assertions.assertEquals(expected, day.testPartTwo(input))
-                }
-            }
-
-        private val testData2 = listOf(
-            "1 + 2 * 3 + 4 * 5 + 6" to 231L,
-            "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
-            "2 * 3 + (4 * 5)" to 46L,
-            "5 + (8 * 3 + 9 + 3 * 4 * 3)" to 1445L,
-            "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" to 669060L,
-            "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" to 23340L
-        )
-    }
+    private val testData2 = listOf(
+        "1 + 2 * 3 + 4 * 5 + 6" to 231L,
+        "1 + (2 * 3) + (4 * (5 + 6))" to 51L,
+        "2 * 3 + (4 * 5)" to 46L,
+        "5 + (8 * 3 + 9 + 3 * 4 * 3)" to 1445L,
+        "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))" to 669060L,
+        "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2" to 23340L
+    )
 }

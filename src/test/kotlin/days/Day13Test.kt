@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*
 
 @DisplayName("Day 13")
 class Day13Test {
-    private val day = Day13()
+    private val day = Day13(listOf("939", "7,13,x,x,59,x,31,19"))
 
     @DisplayName("Part 1")
     @Test
