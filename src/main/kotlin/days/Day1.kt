@@ -5,20 +5,16 @@ package days
     url = "https://adventofcode.com/2020/day/1",
     date = Date(day = 1, year = 2020)
 )
-class Day1(val ints: List<Int>) : Day() {
-    override fun partOne(): Any {
-        return ints
-            .findPairOfSum(2020)
-            ?.let { (a, b) -> a * b }
-            ?: 0
-    }
+class Day1(private val ints: List<Int>) : Puzzle {
+    override fun partOne() = ints
+        .findPairOfSum(2020)
+        ?.let { (a, b) -> a * b }
+        ?: 0
 
-    override fun partTwo(): Any {
-        return ints
-            .findTripleOfSum(2020)
-            ?.let { (a, b, c) -> a * b * c }
-            ?: 0
-    }
+    override fun partTwo() = ints
+        .findTripleOfSum(2020)
+        ?.let { (a, b, c) -> a * b * c }
+        ?: 0
 
     private fun List<Int>.findPairOfSum(sum: Int): Pair<Int, Int>? {
         for (first in this)

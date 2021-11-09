@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/15",
     date = Date(day = 15, year = 2020)
 )
-class Day15(input: String) : Day() {
+class Day15(input: String) : Puzzle {
     private val numbers: List<Int> = input.split(",").map { it.toInt() }
 
     override fun partOne() = numbers.elementInVanEckSequenceAt(2020)

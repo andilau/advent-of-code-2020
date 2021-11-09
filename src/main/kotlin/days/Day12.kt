@@ -7,7 +7,7 @@ import kotlin.math.absoluteValue
     url = "https://adventofcode.com/2020/day/12",
     date = Date(day = 12, year = 2020)
 )
-class Day12(private val commands: List<String>) : Day() {
+class Day12(private val commands: List<String>) : Puzzle {
     override fun partOne(): Any {
         val ship = Ship(Point(0, 0), Heading.EAST)
 

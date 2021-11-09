@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/2",
     date = Date(day = 2, year = 2020)
 )
-class Day2(val input: List<String>) : Day() {
+class Day2(val input: List<String>) : Puzzle {
     override fun partOne() = input
         .map { PasswordValidation.parse(it) }
         .count { it.isValidOne() }

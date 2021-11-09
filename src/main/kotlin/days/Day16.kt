@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/16",
     date = Date(day = 16, year = 2020)
 )
-class Day16(lines: List<String>) : Day() {
+class Day16(lines: List<String>) : Puzzle {
     private val rules = lines.takeWhile(String::isNotEmpty).map(TicketRule.Companion::parse)
     private val ownTicket = lines.dropWhile { it != "your ticket:" }.drop(1).first().split(",").map { it.toInt() }
     private val allTickets = lines.dropWhile { it != "nearby tickets:" }.drop(1).map { row ->

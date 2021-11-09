@@ -1,5 +1,10 @@
 package days
 
+interface Puzzle {
+    fun partOne(): Any
+    fun partTwo(): Any
+}
+
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class AdventOfCodePuzzle(val url: String, val name: String, val date: Date)

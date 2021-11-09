@@ -1,6 +1,6 @@
 package util
 
-import days.Day
+import days.Puzzle
 import org.reflections.Reflections
 import kotlin.math.max
 import kotlin.time.ExperimentalTime
@@ -9,20 +9,20 @@ import kotlin.time.measureTimedValue
 
 @ExperimentalTime
 object Runner {
-    private val dayClasses by lazy {
-        Reflections("days").getSubTypesOf(Day::class.java)
+    private val puzzleClasses by lazy {
+        Reflections("days").getSubTypesOf(Puzzle::class.java)
     }
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val solutions = dayClasses.map { dayNumber(it.simpleName) }.toSet()
+        val solutions = puzzleClasses.map { dayNumber(it.simpleName) }.toSet()
 
         val days: List<Int>? = args
             .map { it.toIntOrNull() ?: error("Day argument must be an integer") }
             .filter { it in solutions || error("No solution for day $it found") }
             .takeIf { it.isNotEmpty() }
 
-        dayClasses
+        puzzleClasses
             .sortedBy { dayNumber(it.simpleName) }
             .filter { days == null || dayNumber(it.simpleName) in days }
             .takeIf { it.isNotEmpty() }
@@ -30,29 +30,29 @@ object Runner {
             ?: printError("Days $days not found")
     }
 
-    private fun printDay(dayClass: Class<out Day>) {
-        val dayNumber: Int = dayNumber(dayClass.simpleName)
-        println("\n=== DAY $dayNumber (${dayClass.simpleName}) ===")
+    private fun printDay(puzzleClass: Class<out Puzzle>) {
+        val dayNumber: Int = dayNumber(puzzleClass.simpleName)
+        println("\n=== DAY $dayNumber (${puzzleClass.simpleName}) ===")
 
-        var day: Day? = null
+        var puzzle: Puzzle? = null
         try {
-            day = dayClass.constructors[0].newInstance() as Day
+            puzzle = puzzleClass.constructors[0].newInstance() as Puzzle
         } catch (e: IllegalArgumentException) {
-            when (dayClass.constructors[0].genericParameterTypes[0].typeName) {
+            when (puzzleClass.constructors[0].genericParameterTypes[0].typeName) {
                 "java.util.List<java.lang.Integer>" -> {
-                    day = dayClass.constructors[0].newInstance(InputReader.getInputAsListOfInt(dayNumber)) as Day
+                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsListOfInt(dayNumber)) as Puzzle
                 }
                 "java.util.List<java.lang.String>" -> {
-                    day = dayClass.constructors[0].newInstance(InputReader.getInputAsList(dayNumber)) as Day
+                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsList(dayNumber)) as Puzzle
                 }
                 "java.lang.String" -> {
-                    day = dayClass.constructors[0].newInstance(InputReader.getInputAsString(dayNumber)) as Day
+                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsString(dayNumber)) as Puzzle
                 }
             }
         }
-        if (day is Day) {
-            val partOne = measureTimedValue { day.partOne() }
-            val partTwo = measureTimedValue { day.partTwo() }
+        if (puzzle is Puzzle) {
+            val partOne = measureTimedValue { puzzle.partOne() }
+            val partTwo = measureTimedValue { puzzle.partTwo() }
             printParts(partOne, partTwo)
         }
     }

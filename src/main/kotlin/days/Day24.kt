@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/24",
     date = Date(day = 24, year = 2020)
 )
-class Day24(val lines: List<String>) : Day() {
+class Day24(val lines: List<String>) : Puzzle {
     override fun partOne(): Int = blackTilesOnDayOne().count()
 
     override fun partTwo(): Int =

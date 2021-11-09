@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/13",
     date = Date(day = 13, year = 2020)
 )
-class Day13(val lines: List<String>) : Day() {
+class Day13(val lines: List<String>) : Puzzle {
     private val target = lines[0].toInt()
     private val busses = lines[1]
         .split(",")

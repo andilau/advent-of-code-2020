@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/17",
     date = Date(day = 17, year = 2020)
 )
-class Day17(val input: List<String>) : Day() {
+class Day17(val input: List<String>) : Puzzle {
     override fun partOne(): Int {
         return generateSequence(
             readInput { x, y -> Point3D(x, y, 0) }) { space -> space.next() }

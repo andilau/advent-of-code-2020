@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/3",
     date = Date(day = 3, year = 2020)
 )
-class Day3(val trees: List<String>) : Day() {
+class Day3(private val trees: List<String>) : Puzzle {
     override fun partOne(): Any =
         countTrees(3 to 1)
 

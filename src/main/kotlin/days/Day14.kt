@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/14",
     date = Date(day = 14, year = 2020)
 )
-class Day14(val input: List<String>) : Day() {
+class Day14(val input: List<String>) : Puzzle {
     private val maskPattern = """mask = ([01X]{36})""".toRegex()
 
     @Suppress("RegExpRedundantEscape")
@@ -57,7 +57,7 @@ class Day14(val input: List<String>) : Day() {
 
         fun getAddressesFor(address: Long): List<Long> {
             val baseAddress = address or maskNull and replace
-            val addresses = mutableListOf<Long>(baseAddress)
+            val addresses = mutableListOf(baseAddress)
 
             for ((i, c) in mask.withIndex()) {
                 if (c == 'X') {

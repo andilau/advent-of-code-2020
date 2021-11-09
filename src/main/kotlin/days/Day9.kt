@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/9",
     date = Date(day = 9, year = 2020)
 )
-class Day9(val numbers: List<Long>) : Day() {
+class Day9(private val numbers: List<Long>) : Puzzle {
     var preambleSize: Int = 25
 
     override fun partOne(): Long {

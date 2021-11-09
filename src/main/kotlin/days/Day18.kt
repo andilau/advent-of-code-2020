@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/18",
     date = Date(day = 18, year = 2020)
 )
-class Day18(val lines: List<String>) : Day() {
+class Day18(val lines: List<String>) : Puzzle {
     override fun partOne() = lines.sumOf { equation ->
         solve(equation, Day18::solveFromLeft)
     }

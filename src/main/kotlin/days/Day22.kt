@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/22",
     date = Date(day = 22, year = 2020)
 )
-class Day22(val lines: List<String>) : Day() {
+class Day22(val lines: List<String>) : Puzzle {
     override fun partOne(): Int {
         val deck1: Deck = readDeckOf("Player 1")
         val deck2: Deck = readDeckOf("Player 2")

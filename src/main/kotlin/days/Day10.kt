@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/10",
     date = Date(day = 10, year = 2020)
 )
-class Day10(private val ints: List<Int>) : Day() {
+class Day10(private val ints: List<Int>) : Puzzle {
     override fun partOne(): Int {
         return ints
             .plus(0)

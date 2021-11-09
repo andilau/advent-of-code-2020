@@ -7,7 +7,7 @@ import days.Day20.Orientation.*
     url = "https://adventofcode.com/2020/day/20",
     date = Date(day = 20, year = 2020)
 )
-class Day20(input: String) : Day() {
+class Day20(input: String) : Puzzle {
     private val tiles: List<Tile> = readTiles(input)
     private val seaMonster: Set<Point> = getMonsterAsPoints()
 

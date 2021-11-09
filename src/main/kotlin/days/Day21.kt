@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/21",
     date = Date(day = 21, year = 2020)
 )
-class Day21(lines: List<String>) : Day() {
+class Day21(lines: List<String>) : Puzzle {
     private val food = readFood(lines)
     private val allergens = food.values.flatten().toSet()
 
@@ -16,7 +16,6 @@ class Day21(lines: List<String>) : Day() {
     }
 
     override fun partTwo(): String {
-
         val allergenPossibleIngredients: MutableMap<String, Set<String>> = allergenPossibleIngredients()
         val allergenExactIngredient = mutableListOf<Pair<String, String>>()
 

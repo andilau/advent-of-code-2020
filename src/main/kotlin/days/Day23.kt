@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/23",
     date = Date(day = 23, year = 2020)
 )
-class Day23(val input: String) : Day() {
+class Day23(val input: String) : Puzzle {
     override fun partOne(): String {
         return CupGame(input)
             .playRounds(100)

@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/7",
     date = Date(day = 7, year = 2020)
 )
-class Day7(lines: List<String>) : Day() {
+class Day7(lines: List<String>) : Puzzle {
     private val bagRules: Set<BagRule> = parseLines(lines)
 
     override fun partOne(): Int =

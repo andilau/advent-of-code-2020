@@ -7,7 +7,7 @@ typealias Seat = Pair<Int, Int>
     url = "https://adventofcode.com/2020/day/11",
     date = Date(day = 11, year = 2020)
 )
-class Day11(input: List<String>) : Day() {
+class Day11(input: List<String>) : Puzzle {
     private val initialSeats: Map<Seat, Char> = getSeatPlan(input)
 
     private val neighbors = listOf(

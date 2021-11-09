@@ -5,7 +5,7 @@ package days
     url = "https://adventofcode.com/2020/day/5",
     date = Date(day = 5, year = 2020)
 )
-class Day5(val input: List<String>) : Day() {
+class Day5(val input: List<String>) : Puzzle {
     override fun partOne(): Int = getSeatIds()
         .maxOf { it }
 
