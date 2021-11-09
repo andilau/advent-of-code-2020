@@ -13,14 +13,14 @@ class Day9Test {
 
     private val day = Day9(input).apply { preambleSize = 5 }
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
         assertThat(day.partOne()).isEqualTo(127)
     }
 
-    @DisplayName("Part 2")
     @Test
+    @DisplayName("Part 2")
     fun testPartTwo() {
         assertThat(day.partTwo()).isEqualTo(62)
     }

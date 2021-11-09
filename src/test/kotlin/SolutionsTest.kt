@@ -1,13 +1,12 @@
-package days
-
+import days.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import util.InputReader
 
-@DisplayName("AdventOfCode")
-class AdventOfCodeTest {
+@DisplayName("Advent of Code solutions")
+class SolutionsTest {
     @TestFactory
     fun testAdventOfCode() = listOf(
         Day1(InputReader.getInputAsListOfInt(1)) to Pair(1_007_331, 48_914_340),
@@ -35,10 +34,11 @@ class AdventOfCodeTest {
         Day23(InputReader.getInputAsString(23)) to Pair("69852437", 91408386135),
         Day24(InputReader.getInputAsList(24)) to Pair(339, 3794),
         Day25(InputReader.getInputAsListOfInt(25)) to Pair(6408263L, 6408263L),
-    ).map { (day, answers) ->
-        DynamicTest.dynamicTest("${day.javaClass.simpleName} -> ${answers.first} / ${answers.second}") {
-            assertThat(day.partOne()).isEqualTo(answers.first)
-            assertThat(day.partTwo()).isEqualTo(answers.second)
+    )
+        .map { (day, answers) ->
+            DynamicTest.dynamicTest("${day.javaClass.simpleName} -> ${answers.first} / ${answers.second}") {
+                assertThat(day.partOne()).isEqualTo(answers.first)
+                assertThat(day.partTwo()).isEqualTo(answers.second)
+            }
         }
-    }
 }

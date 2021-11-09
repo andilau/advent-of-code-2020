@@ -31,8 +31,8 @@ class Day15Test {
         }
     }
 
-    @DisplayName("Part 2")
     @Nested
+    @DisplayName("Part 2")
     inner class Part2 {
         @TestFactory
         fun testPartTwoFactory() = listOf(

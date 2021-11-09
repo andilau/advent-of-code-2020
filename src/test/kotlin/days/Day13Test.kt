@@ -7,14 +7,14 @@ import org.junit.jupiter.api.*
 class Day13Test {
     private val day = Day13(listOf("939", "7,13,x,x,59,x,31,19"))
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
         assertThat(day.partOne()).isEqualTo(5 * 59)
     }
 
-    @DisplayName("Part 2")
     @Test
+    @DisplayName("Part 2")
     fun testPartTwo() {
         assertThat(day.partTwo()).isEqualTo(1_068_781L)
     }

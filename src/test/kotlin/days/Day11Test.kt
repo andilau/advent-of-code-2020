@@ -19,14 +19,14 @@ class Day11Test {
         L.LLLLL.LL
         """.trimIndent().lines()
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
         assertThat(Day11(seats).partOne()).isEqualTo(37)
     }
 
-    @DisplayName("Part 2")
     @Test
+    @DisplayName("Part 2")
     fun testPartTwo() {
         assertThat(Day11(seats).partTwo()).isEqualTo(26)
     }

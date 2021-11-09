@@ -13,8 +13,8 @@ class Day14Test {
         "mem[8] = 0"
     )
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOneExample1() {
         assertThat(Day14(example1).partOne()).isEqualTo(165L)
     }
@@ -26,8 +26,8 @@ class Day14Test {
         "mem[26] = 1"
     )
 
-   @DisplayName("Part 2")
     @Test
+    @DisplayName("Part 2")
     fun testPartTwo() {
         assertThat(Day14(example2).partTwo()).isEqualTo(208L)
     }

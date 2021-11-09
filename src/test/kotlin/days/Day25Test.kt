@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 class Day25Test {
     val input = listOf(5764801, 17807724)
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
         assertThat(Day25(input).partOne()).isEqualTo(14_897_079)
     }

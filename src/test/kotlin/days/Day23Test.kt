@@ -13,12 +13,13 @@ class Day23Test {
     @DisplayName("Part 1")
     inner class Part1 {
         @Test
-        @DisplayName("testPartOne10Moves")
+        @DisplayName("test partOne after 10 moves")
         internal fun testPartOne10Moves() {
             assertThat(Day23(input).playRoundsAndGetCups(10)).isEqualTo("92658374")
         }
 
         @Test
+        @DisplayName("test PartOne after 100 moves")
         fun testPartOne100Moves() {
             assertThat(Day23(input).partOne()).isEqualTo("67384529")
         }

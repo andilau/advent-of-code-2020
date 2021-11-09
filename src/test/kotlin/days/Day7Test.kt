@@ -16,8 +16,8 @@ vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.
 faded blue bags contain no other bags.
 dotted black bags contain no other bags.""".lines()
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
         assertThat(
             Day7(
@@ -27,8 +27,8 @@ dotted black bags contain no other bags.""".lines()
         ).isEqualTo(4)
     }
 
-    @DisplayName("Part 2")
     @Test
+    @DisplayName("Part 2")
     fun testPartTwo() {
         assertThat(
             Day7(

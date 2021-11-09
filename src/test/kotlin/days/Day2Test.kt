@@ -12,14 +12,14 @@ class Day2Test {
         "2-9 c: ccccccccc"
     )
 
-    @DisplayName("Part 1")
     @Test
+    @DisplayName("Part 1")
     fun testPartOne() {
         assertThat(Day2(input).partOne()).isEqualTo(2)
     }
 
-    @DisplayName("Part 2")
     @Test
+    @DisplayName("Part 2")
     fun testPartTwo() {
         assertThat(Day2(input).partTwo()).isEqualTo(1)
     }
