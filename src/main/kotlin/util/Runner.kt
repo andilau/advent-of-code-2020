@@ -39,14 +39,17 @@ object Runner {
             puzzle = puzzleClass.constructors[0].newInstance() as Puzzle
         } catch (e: IllegalArgumentException) {
             when (puzzleClass.constructors[0].genericParameterTypes[0].typeName) {
-                "java.util.List<java.lang.Integer>" -> {
-                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsListOfInt(dayNumber)) as Puzzle
+                "java.lang.String" -> {
+                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsString(dayNumber)) as Puzzle
                 }
                 "java.util.List<java.lang.String>" -> {
                     puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsList(dayNumber)) as Puzzle
                 }
-                "java.lang.String" -> {
-                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsString(dayNumber)) as Puzzle
+                "java.util.List<java.lang.Integer>" -> {
+                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsListOfInt(dayNumber)) as Puzzle
+                }
+                "java.util.List<java.lang.Long>" -> {
+                    puzzle = puzzleClass.constructors[0].newInstance(InputReader.getInputAsListOfLong(dayNumber)) as Puzzle
                 }
             }
         }
