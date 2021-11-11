@@ -8,85 +8,106 @@ typealias Seat = Pair<Int, Int>
     date = Date(day = 11, year = 2020)
 )
 class Day11(input: List<String>) : Puzzle {
-    private val initialSeats: Map<Seat, Char> = getSeatPlan(input)
-    private val neighbors = listOf(
-        -1 to -1, -1 to 0, -1 to 1,
-        0 to -1, 0 to 1,
-        1 to -1, 1 to 0, 1 to 1
-    )
+    private val col = input.first().length
+    private val row = input.size
+    private val seats: Map<Seat, State> = getSeatPlan(input)
+    private lateinit var neighboursOf: Map<Seat, Set<Seat>>
+    private lateinit var neighboursSeen: Map<Seat, Set<Seat>>
 
-    override fun partOne(): Int = generateSequence(initialSeats) { it.calculateNext() }
-        .zipWithNext()
-        .first { it.first == it.second }
-        .first
-        .values
-        .count { it == '#' }
+    override fun partOne(): Int {
+        neighboursOf = seats.keys.associateWith { seat ->
+            neighbors.map { seat + it }
+                .filter { seats.containsKey(it) }
+                .toSet()
+        }
+        return generateSequence(seats) { it.calculateNextAdjacent() }
+            .zipWithNext()
+            .first { it.first == it.second }
+            .first
+            .values
+            .count { it == State.FULL }
+    }
 
-    override fun partTwo(): Int = generateSequence(initialSeats) { it.calculateNext2() }
-        .zipWithNext()
-        .first { it.first == it.second }
-        .first
-        .values
-        .count { it == '#' }
+    override fun partTwo(): Int {
+        neighboursSeen = seats.keys.associateWith { seat ->
+            neighbors.mapNotNull { direction ->
+                generateSequence(seat + direction) { it + direction }
+                    .takeWhile { isInBounds(it) }
+                    .firstOrNull { seats.containsKey(it) }
+            }
+                .toSet()
+        }
+        return generateSequence(seats) { it.calculateNextBySeen() }
+            .zipWithNext()
+            .first { it.first == it.second }
+            .first
+            .values
+            .count { it == State.FULL }
+    }
 
-    private fun getSeatPlan(input: List<String>): Map<Seat, Char> {
-        val seats: MutableMap<Seat, Char> = mutableMapOf()
+    private fun isInBounds(seat: Seat) =
+        seat.first >= 0 && seat.second >= 0 && seat.first <= col && seat.second <= row
+
+    private fun Map<Seat, State>.calculateNextAdjacent(): Map<Seat, State> {
+        val next: MutableMap<Seat, State> = mutableMapOf()
+        for (seat in keys) {
+            val type = getValue(seat)
+            val occupied = countNeighbors(this, seat)
+            next[seat] =
+                when {
+                    type == State.EMPTY && occupied == 0 -> State.FULL
+                    type == State.FULL && occupied >= 4 -> State.EMPTY
+                    else -> type
+                }
+        }
+        return next.toMap()
+    }
+
+    private fun countNeighbors(seats: Map<Seat, State>, seat: Seat) =
+        neighboursOf.getValue(seat)
+            .count { seats[it] == State.FULL }
+
+    private fun Map<Seat, State>.calculateNextBySeen(): Map<Seat, State> {
+        val next: MutableMap<Seat, State> = mutableMapOf()
+        for (seat in keys) {
+            val type = getValue(seat)
+            val occupied = countSeen(this, seat)
+            next[seat] =
+                when {
+                    type == State.EMPTY && occupied == 0 -> State.FULL
+                    type == State.FULL && occupied >= 5 -> State.EMPTY
+                    else -> type
+                }
+        }
+        return next.toMap()
+    }
+
+    private fun countSeen(seats: Map<Seat, State>, seat: Seat) =
+        neighboursSeen.getValue(seat)
+            .count { seats[it] == State.FULL }
+
+    private fun getSeatPlan(input: List<String>): Map<Seat, State> {
+        val seats: MutableMap<Seat, State> = mutableMapOf()
         for ((y, line) in input.withIndex()) {
             line.indices.map { x ->
-                seats[x to y] = line[x]
+                if (line[x] == 'L') seats[x to y] = State.EMPTY
             }
         }
         return seats
     }
 
-    private fun countNeighbors(seats: Map<Seat, Char>, seat: Seat) =
-        neighbors
-            .map { it + seat }
-            .filter { it in seats.keys }
-            .count { seats[it] == '#' }
-
-    private fun countNeighborsSeen(seats: Map<Seat, Char>, seat: Seat): Int {
-        return neighbors
-            .map { findSeatsInDirection(seats, seat, it) }
-            .count { it == '#' }
-    }
-
-    private fun findSeatsInDirection(seats: Map<Pair<Int, Int>, Char>, seat: Seat, vector: Seat): Char? =
-        generateSequence(seat + vector) { it + vector }
-            //.filter { seats.containsKey(it) }
-            .map { seats[it] }
-            .first { it == null || it != '.' }
-
     private operator fun Seat.plus(that: Seat): Seat =
         Seat(this.first + that.first, this.second + that.second)
 
-    private fun Map<Seat, Char>.calculateNext(): Map<Seat, Char> {
-        val new: MutableMap<Seat, Char> = mutableMapOf()
-        for (seat in keys) {
-            val type = getValue(seat)
-            val occupied = countNeighbors(this, seat)
-            new[seat] =
-                when {
-                    type == 'L' && occupied == 0 -> '#'
-                    type == '#' && occupied >= 4 -> 'L'
-                    else -> type
-                }
-        }
-        return new.toMap()
+    companion object {
+        internal val neighbors = listOf(
+            -1 to -1, -1 to 0, -1 to 1,
+            0 to -1, 0 to 1,
+            1 to -1, 1 to 0, 1 to 1
+        )
     }
 
-    private fun Map<Seat, Char>.calculateNext2(): Map<Seat, Char> {
-        val new: MutableMap<Seat, Char> = mutableMapOf()
-        for (seat in keys) {
-            val type = getValue(seat)
-            val occupied = countNeighborsSeen(this, seat)
-            new[seat] =
-                when {
-                    type == 'L' && occupied == 0 -> '#'
-                    type == '#' && occupied >= 5 -> 'L'
-                    else -> type
-                }
-        }
-        return new.toMap()
+    enum class State {
+        EMPTY, FULL
     }
 }
