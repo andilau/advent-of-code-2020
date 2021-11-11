@@ -8,10 +8,10 @@ programming language. Advent of Code is an Advent calendar of small programming 
 The solutions posted here are my attempts to learn kotlin by solving puzzles. The main implementation goals were:
 
 - __Readability:__ clean, readable, expressive code
-- __Idiomatic:__ concise, functional-style kotlin code
-- __Simple:__ single day `class` implementing the `puzzle` interface
+- __Idiomatic:__ concise, functional-style kotlin
+- __Simple:__ single `Day` class implementing the `Puzzle` interface
 - __Minimal:__ shared code (DRY) between the two parts with minimal external dependencies
-- __Performance:__ effective algorithms, preferably solving each puzzle in under a second (Intel Core i7@2.6GHz)
+- __Performance:__ effective algorithms, preferably solving each puzzle in under a second measured on a `i7-4960HQ@2.6Ghz` machine running macOS
   - TODO (~~Day15~~, ~~Day23~~, Day11)
 
 ## Solutions
