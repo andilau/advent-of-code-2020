@@ -1,14 +1,9 @@
 package days
 
 import org.openjdk.jmh.annotations.*
-import java.util.concurrent.TimeUnit
 
-@State(Scope.Thread)
-@BenchmarkMode(Mode.AverageTime)
-@Fork(value = 1, warmups = 1)
-@Warmup(iterations = 1)
-@Measurement(iterations = 1)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@State(Scope.Benchmark)
+@BenchmarkMode(Mode.SingleShotTime)
 open class Day1Bench {
     private lateinit var ints: List<Int>
 
