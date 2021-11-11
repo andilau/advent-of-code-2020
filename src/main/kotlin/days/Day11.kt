@@ -9,7 +9,6 @@ typealias Seat = Pair<Int, Int>
 )
 class Day11(input: List<String>) : Puzzle {
     private val initialSeats: Map<Seat, Char> = getSeatPlan(input)
-
     private val neighbors = listOf(
         -1 to -1, -1 to 0, -1 to 1,
         0 to -1, 0 to 1,
