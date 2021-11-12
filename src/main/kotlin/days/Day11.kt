@@ -2,6 +2,7 @@ package days
 
 typealias Seat = Pair<Int, Int>
 typealias Seats = Map<Seat, Day11.State>
+typealias SeatsMapNeighbours = Map<Seat, Set<Seat>>
 
 @AdventOfCodePuzzle(
     name = "Seating System",
@@ -11,77 +12,72 @@ typealias Seats = Map<Seat, Day11.State>
 class Day11(input: List<String>) : Puzzle {
     private val col = input.first().length
     private val row = input.size
-    private val seats: Seats = getSeatPlan(input)
-    private lateinit var neighboursOf: Map<Seat, Set<Seat>>
-    private lateinit var neighboursSeen: Map<Seat, Set<Seat>>
+    private val seats: Seats = getSeats(input)
 
     override fun partOne(): Int {
-        neighboursOf = seats.getNeighbours()
-        return generateStableMap(this::countNeighbors, 4)
+        return generateStableMap(seats.getMapSeatsToNeighboursNear(), 4).occupied()
     }
 
     override fun partTwo(): Int {
-        neighboursSeen = seats.getNeighboursSeen()
-        return generateStableMap(this::countSeen, 5)
+        return generateStableMap(seats.getMapSeatsToNeighboursSight(), 5).occupied()
     }
 
-    private fun Seats.getNeighbours() = keys.associateWith { seat ->
-        neighbors.map { seat + it }
-            .filter { containsKey(it) }
-            .toSet()
-    }
-
-    private fun Seats.getNeighboursSeen() = keys.associateWith { seat ->
-        neighbors.mapNotNull { direction ->
-            generateSequence(seat + direction) { it + direction }
-                .takeWhile { it.inBounds() }
-                .firstOrNull { containsKey(it) }
-        }
-            .toSet()
-    }
-
-    private fun generateStableMap(countFunction: (Map<Seat, State>, Seat) -> Int, limit: Int) =
-        generateSequence(seats) { it.calculateNext(countFunction, limit) }
+    private fun generateStableMap(map: SeatsMapNeighbours, limit: Int) =
+        generateSequence(seats) { it.generateNext(map, limit) }
             .zipWithNext()
             .first { it.first == it.second }
             .first
-            .values
-            .count { it == State.FULL }
+
+    private fun Seats.getMapSeatsToNeighboursNear() =
+        keys.associateWith { seat ->
+            neighbors.map { seat + it }
+                .filter { containsKey(it) }
+                .toSet()
+        }
+
+    private fun Seats.getMapSeatsToNeighboursSight() =
+        keys.associateWith { seat ->
+            neighbors.mapNotNull { direction ->
+                generateSequence(seat + direction) { it + direction }
+                    .takeWhile { it.inBounds() }
+                    .firstOrNull { containsKey(it) }
+            }
+                .toSet()
+        }
 
     private fun Seat.inBounds() =
         (first in 0..col) && (second in 0..row)
 
-    private fun Seats.calculateNext(
-        countOccupied: (Seats, Seat) -> Int,
+    private fun Seats.generateNext(
+        mapSeatsToNeighbours: Map<Seat, Set<Seat>>,
         limit: Int
     ): Seats {
         val next: MutableMap<Seat, State> = mutableMapOf()
         for (seat in keys) {
             val type = getValue(seat)
-            val occupied = countOccupied(this, seat)
+            val occupied = this.countNeighbors(mapSeatsToNeighbours, seat)
             next[seat] =
                 when {
-                    type == State.EMPTY && occupied == 0 -> State.FULL
-                    type == State.FULL && occupied >= limit -> State.EMPTY
+                    type == State.EMPTY && occupied == 0 -> State.OCCUPIED
+                    type == State.OCCUPIED && occupied >= limit -> State.EMPTY
                     else -> type
                 }
         }
         return next.toMap()
     }
 
-    private fun countNeighbors(seats: Seats, seat: Seat) =
-        neighboursOf.getValue(seat)
-            .count { seats[it] == State.FULL }
+    private fun Seats.occupied() =
+        values.count { it == State.OCCUPIED }
 
-    private fun countSeen(seats: Seats, seat: Seat) =
-        neighboursSeen.getValue(seat)
-            .count { seats[it] == State.FULL }
+    private fun Seats.countNeighbors(map: SeatsMapNeighbours, seat: Seat) =
+        map.getValue(seat)
+            .count { this[it] == State.OCCUPIED }
 
-    private fun getSeatPlan(input: List<String>): Seats {
+    private fun getSeats(input: List<String>): Seats {
         val seats: MutableMap<Seat, State> = mutableMapOf()
         for ((y, line) in input.withIndex()) {
             line.indices.map { x ->
-                if (line[x] == 'L') seats[x to y] = State.EMPTY
+                if (line[x] == State.EMPTY.char) seats[x to y] = State.EMPTY
             }
         }
         return seats
@@ -91,12 +87,14 @@ class Day11(input: List<String>) : Puzzle {
         Seat(this.first + that.first, this.second + that.second)
 
     companion object {
-        private val neighbors = listOf(
+        private val neighbors = sequenceOf(
             -1 to -1, -1 to 0, -1 to 1,
             0 to -1, 0 to 1,
             1 to -1, 1 to 0, 1 to 1
         )
     }
 
-    enum class State { EMPTY, FULL }
+    enum class State(val char: Char) {
+        EMPTY('L'), OCCUPIED('#')
+    }
 }
