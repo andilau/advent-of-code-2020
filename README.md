@@ -12,7 +12,7 @@ The solutions posted here are my attempts to learn kotlin by solving puzzles. Th
 - __Simple:__ single `Day` class implementing the `Puzzle` interface
 - __Minimal:__ shared code (DRY) between the two parts with minimal external dependencies
 - __Performance:__ effective algorithms, preferably solving each puzzle in under a second measured on a `i7-4960HQ@2.6Ghz` machine running macOS
-  - TODO (~~Day15~~, ~~Day23~~, Day11)
+  - TODO (~~Day15~~, ~~Day23~~, ~~Day11~~)
 
 ## Solutions
 
