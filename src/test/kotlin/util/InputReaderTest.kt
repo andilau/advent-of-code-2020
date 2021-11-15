@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test
 class InputReaderTest {
     @Test
     fun testReadInputAsString() {
-        val testInputAsString = InputReader.getInputAsString(0)
-        assertThat(testInputAsString).isEqualTo("1721\n979\n366\n299\n675\n1456")
+        val input = InputReader.getInputAsString(0)
+        assertThat(input).isEqualTo("1721\n979\n366\n299\n675\n1456")
     }
 
     @Test
     fun testReadInputAsList() {
-        val testInputAsList = InputReader.getInputAsList(0)
-        assertThat(testInputAsList)
+        val input = InputReader.getInputAsList(0)
+        assertThat(input)
             .isNotEmpty
             .hasSize(6)
             .containsExactly("1721", "979", "366", "299", "675", "1456")
@@ -24,11 +24,20 @@ class InputReaderTest {
 
     @Test
     fun testReadInputAsListOfInt() {
-        val testInputAsListOfInt = InputReader.getInputAsListOfInt(0)
-        assertThat(testInputAsListOfInt)
+        val input = InputReader.getInputAsListOfInt(0)
+        assertThat(input)
             .isNotEmpty
             .hasSize(6)
             .containsExactly(1721, 979, 366, 299, 675, 1456)
+    }
+
+    @Test
+    fun testReadInputAsListOfLong() {
+        val input = InputReader.getInputAsListOfLong(0)
+        assertThat(input)
+            .isNotEmpty
+            .hasSize(6)
+            .containsExactly(1721L, 979L, 366L, 299L, 675L, 1456L)
     }
 
     @Test
