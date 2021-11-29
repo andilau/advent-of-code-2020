@@ -33,7 +33,6 @@ class Day8(lines: List<String>) : Puzzle {
     }
 
     object Computer {
-
         fun run(program: List<Instruction>): Int {
             var ip = 0
             var acc = 0

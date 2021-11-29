@@ -1,6 +1,6 @@
 # Advent of Code 2020: Solutions in Kotlin
 
-My solutions for [Advent of Code 2020](https://adventofcode.com/2020) in the [Kotlin](https://kotlinlang.org/)
+My solutions for [Advent of Code 2020](https://adventofcode.com/2020) in [Kotlin](https://kotlinlang.org/)
 programming language. Advent of Code is an Advent calendar of small programming puzzles by [Eric Wastl](http://was.tl/).
 
 ## Goals
@@ -66,7 +66,7 @@ Project is already setup with gradle. To run the app:
 
 ### Testing
 
-Project includes Junit and Hamcrest and a stub unit test to get you going. To run all tests:
+Project includes JUnit and AssertJ and a stub unit test to get you going. To run all tests:
 
 * Navigate to top-level directory on the command line
 * Run `./gradlew test`
