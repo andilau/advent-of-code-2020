@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     application
     kotlin("jvm") version "1.6.10"
+    id("me.champeau.jmh") version "0.6.6"
 }
 
 application {
