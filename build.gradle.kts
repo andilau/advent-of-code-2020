@@ -21,7 +21,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.reflections:reflections:0.10.2")
-    implementation("org.slf4j:slf4j-nop:1.7.35")
+    implementation("org.slf4j:slf4j-nop:1.7.36")
 
     testApi("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testImplementation("org.assertj:assertj-core:3.22.0")
