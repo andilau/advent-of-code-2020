@@ -14,7 +14,6 @@ jobs:
 
           # ktlint
           relative: true
-          experimental: true
           reporter: |
             plain,output=ktlint_report.txt
             json,output=ktlint_report.json
