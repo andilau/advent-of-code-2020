@@ -27,11 +27,14 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.26.3")
 }
 
-tasks {
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
-        kotlinOptions.freeCompilerArgs = listOf("-Xjsr305=strict")
+tasks.named("compileKotlin", org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
+    compilerOptions {
+        jvmTarget.set("17")
+        freeCompilerArgs.add("-Xjsr305=strict")
     }
+}
+
+tasks {
     test {
         useJUnitPlatform()
     }
