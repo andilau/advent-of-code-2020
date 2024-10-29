@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     application
     kotlin("jvm") version "2.0.21"
@@ -27,15 +25,16 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.26.3")
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 tasks.named("compileKotlin", org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
     compilerOptions {
-        jvmTarget.set("17")
         freeCompilerArgs.add("-Xjsr305=strict")
     }
 }
 
-tasks {
-    test {
-        useJUnitPlatform()
-    }
+tasks.named("test", Test::class) {
+    useJUnitPlatform()
 }
