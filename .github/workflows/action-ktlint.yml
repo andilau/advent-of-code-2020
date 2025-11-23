@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: musichin/ktlint-check@v3
+      - uses: musichin/ktlint-check@v4
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
