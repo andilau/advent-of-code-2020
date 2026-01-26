@@ -1,7 +1,6 @@
 plugins {
     application
-    kotlin("jvm") version "2.2.20"
-    id("me.champeau.jmh") version "0.7.3"
+    kotlin("jvm") version "2.2.21"
 }
 
 application {
@@ -15,27 +14,32 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.slf4j:slf4j-nop:2.0.17")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.2")
-    testImplementation("org.assertj:assertj-core:3.27.5")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testApi("org.junit.jupiter:junit-jupiter-engine:5.13.3")
+    testImplementation("org.assertj:assertj-core:3.27.6")
 }
 
 kotlin {
     jvmToolchain(17)
-}
-
-tasks.named("compileKotlin", org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
     compilerOptions {
-        freeCompilerArgs.add("-Xjsr305=strict")
+        freeCompilerArgs.set(listOf("-Xjsr305=strict"))
+    }
+    sourceSets.all {
+        languageSettings {
+            languageVersion = "2.0"
+        }
     }
 }
 
-tasks.named("test", Test::class) {
-    useJUnitPlatform()
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter()
+        }
+    }
 }
